@@ -4,21 +4,21 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_report(report_code INTEGER, amo_services INTEGER, amo_rents INTEGER, income_rents DOUBLE PRECISION, amo_others INTEGER, income_others DOUBLE PRECISION, income_total DOUBLE PRECISION) RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION insert_report(amo_services INTEGER, amo_rents INTEGER, income_rents DOUBLE PRECISION, amo_others INTEGER, income_others DOUBLE PRECISION, income_total DOUBLE PRECISION) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO report (report_code, amo_services, amo_rents, income_rents, amo_others, income_others, income_total) VALUES (report_code, amo_services, amo_rents, income_rents, amo_others, income_others, income_total);
+  INSERT INTO report (amo_services, amo_rents, income_rents, amo_others, income_others, income_total) VALUES (amo_services, amo_rents, income_rents, amo_others, income_others, income_total);
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_contract(contact_code INTEGER, applicant_name CHARACTER VARYING, start_date DATE, end_date DATE, contract_kms DOUBLE PRECISION, contract_amount DOUBLE PRECISION, contract_country CHARACTER VARYING, fleet_number INTEGER) RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION insert_contract(applicant_name CHARACTER VARYING, start_date DATE, end_date DATE, contract_kms DOUBLE PRECISION, contract_amount DOUBLE PRECISION, contract_country CHARACTER VARYING, fleet_number INTEGER) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO contract (contact_code, applicant_name, start_date, end_date, contract_kms, contract_amount, contract_country, fleet_number) VALUES (contact_code, applicant_name, start_date, end_date, contract_kms, contract_amount, contract_country, fleet_number);
+  INSERT INTO contract (applicant_name, start_date, end_date, contract_kms, contract_amount, contract_country, fleet_number) VALUES (applicant_name, start_date, end_date, contract_kms, contract_amount, contract_country, fleet_number);
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_car(fleet_number INTEGER, plate CHARACTER VARYING, couple_code INTEGER, brand_name CHARACTER VARYING) RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION insert_car(plate CHARACTER VARYING, couple_code INTEGER, brand_name CHARACTER VARYING) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO car (fleet_number, plate, couple_code, brand_name) VALUES (fleet_number, plate, couple_code, brand_name);
+  INSERT INTO car (plate, couple_code, brand_name) VALUES (plate, couple_code, brand_name);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -34,21 +34,21 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_driver(ID CHARACTER VARYING, driver_name CHARACTER VARYING, address CHARACTER VARYING, phone CHARACTER VARYING, district_code INTEGER) RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION insert_driver(ID_Driver CHARACTER VARYING, driver_name CHARACTER VARYING, address CHARACTER VARYING, phone CHARACTER VARYING, district_code INTEGER) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO driver (ID, driver_name, address, phone, district_code) VALUES (ID, driver_name, address, phone, district_code);
+  INSERT INTO driver (ID_Driver, driver_name, address, phone, district_code) VALUES (ID_Driver, driver_name, address, phone, district_code);
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_district(district_code INTEGER, district_name CHARACTER VARYING) RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION insert_district(district_name CHARACTER VARYING) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO district (district_code, district_name) VALUES (district_code, district_name);
+  INSERT INTO district (district_name) VALUES (district_name);
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_service(service_code INTEGER, service_name CHARACTER VARYING, request_number CHARACTER VARYING, tour_group_code CHARACTER VARYING, country CHARACTER VARYING, pickup_place CHARACTER VARYING, pickup_time TIME WITHOUT TIME ZONE, pax INTEGER, service_kms DOUBLE PRECISION, amount DOUBLE PRECISION) RETURNS VOID AS $$
+CREATE OR REPLACE FUNCTION insert_service(service_name CHARACTER VARYING, request_number CHARACTER VARYING, tour_group_code CHARACTER VARYING, country CHARACTER VARYING, pickup_place CHARACTER VARYING, pickup_time TIME WITHOUT TIME ZONE, pax INTEGER, service_kms DOUBLE PRECISION, amount DOUBLE PRECISION) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO service (service_code, service_name, request_number, tour_group_code, country, pickup_place, pickup_time, pax, service_kms, amount) VALUES (service_code, service_name, request_number, tour_group_code, country, pickup_place, pickup_time, pax, service_kms, amount);
+  INSERT INTO service (service_name, request_number, tour_group_code, country, pickup_place, pickup_time, pax, service_kms, amount) VALUES (service_name, request_number, tour_group_code, country, pickup_place, pickup_time, pax, service_kms, amount);
 END;
 $$ LANGUAGE plpgsql;
 
