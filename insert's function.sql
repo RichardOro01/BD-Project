@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION insert_month(month_code INTEGER, report_code INTEGER) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO month (month_code, report_code) VALUES (month_code, report_code);
+  INSERT INTO months (month_code, report_code) VALUES (month_code, report_code);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -60,6 +60,6 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION insert_roadmap(date, fleet_number INTEGER, kms DOUBLE PRECISION, departure_time TIME WITHOUT TIME ZONE) RETURNS VOID AS $$
 BEGIN
-  INSERT INTO roadmap (date, fleet_number, kms, departure_time) VALUES ($1, fleet_number, kms, departure_time);
+  INSERT INTO roadmap (roadmap_date, fleet_number, kms, departure_time) VALUES ($1, fleet_number, kms, departure_time);
 END;
 $$ LANGUAGE plpgsql;

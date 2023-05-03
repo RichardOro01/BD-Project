@@ -13,19 +13,19 @@ END;$$
 CREATE OR REPLACE FUNCTION delete_car(fleet_number integer)
 RETURNS VOID LANGUAGE 'plpgsql' AS $$
 BEGIN
-	DELETE FROM car c WHERE c.fleet_number = fleet_number;
+	DELETE FROM car WHERE car.fleet_number = fleet_number;
 END;$$
 
 CREATE OR REPLACE FUNCTION delete_contract(contract_code integer)
 RETURNS VOID LANGUAGE 'plpgsql' AS $$
 BEGIN
-	DELETE FROM contract c WHERE c.contrac_code = contract_code;
+	DELETE FROM contract WHERE contract.contract_code = contract_code;
 END;$$
 
 CREATE OR REPLACE FUNCTION delete_couple(couple_code integer)
 RETURNS VOID LANGUAGE 'plpgsql' AS $$
 BEGIN
-	DELETE FROM couple c WHERE c.couple_code = couple_code;
+	DELETE FROM couple WHERE couple.couple_code = couple_code;
 END;$$
 
 CREATE OR REPLACE FUNCTION delete_discrepency(month_code integer, fleet_number integer)
@@ -43,19 +43,19 @@ END;$$
 CREATE OR REPLACE FUNCTION delete_driver(character varying)
 RETURNS VOID LANGUAGE 'plpgsql' AS $$
 BEGIN
-	DELETE FROM driver d WHERE d.ID = $1;
+	DELETE FROM driver d WHERE d.ID_Driver = $1;
 END;$$
 
 CREATE OR REPLACE FUNCTION delete_month(month_code integer)
 RETURNS VOID LANGUAGE 'plpgsql' AS $$
 BEGIN 
-	DELETE FROM month m WHERE m.month_code = month_code;
+	DELETE FROM months WHERE months.month_code = month_code;
 END;$$
 
 CREATE OR REPLACE FUNCTION delete_roadmap(date,integer)
 RETURNS VOID LANGUAGE 'plpgsql' AS $$
 BEGIN
-	DELETE FROM roadmap r WHERE r.date = $1 AND r.fleet_number = $2;
+	DELETE FROM roadmap r WHERE r.roadmap_date = $1 AND r.fleet_number = $2;
 END;$$	
 
 CREATE OR REPLACE FUNCTION delete_service(service_code integer)
