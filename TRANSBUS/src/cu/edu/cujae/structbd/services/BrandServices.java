@@ -11,11 +11,13 @@ public class BrandServices {
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement llamada = null;
         try {
-            llamada = connection.prepareCall("{ ? = call insert_brand(?, ?, ?, ?) }");
-            llamada.setString(2, brandName);
-            llamada.setInt(3, 123);
-            llamada.setString(4, "asd");
-            llamada.setDouble(5, 123);
+
+            llamada = connection.prepareCall("{ call insert_brand(?, ?, ?, ?) }");
+            llamada.setString(1, brandName);
+            llamada.setInt(2, 123);
+            llamada.setString(3, "asd");
+            llamada.setDouble(4, 123);
+
             llamada.execute();
             llamada.close();
         } catch (SQLException e) {

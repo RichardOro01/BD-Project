@@ -7,6 +7,24 @@ import java.util.Properties;
 
 public class ServicesLocator {
     private static BrandServices brandServices = null;
+    private static String username;
+    private static String password;
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        ServicesLocator.username = username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        ServicesLocator.password = password;
+    }
 
     public static BrandServices getBrandServices(){
         if(brandServices == null){
@@ -19,8 +37,8 @@ public class ServicesLocator {
         try {
             String url = "jdbc:postgresql://localhost:5432/transbus";
             Properties props = new Properties();
-            props.setProperty("user", "postgres");
-            props.setProperty("password", "admin");
+            props.setProperty("user", username);
+            props.setProperty("password", password);
             connection = DriverManager.getConnection(url, props);
         } catch (SQLException e) {
             e.printStackTrace();
