@@ -1,4 +1,4 @@
-package gui;
+package cu.edu.cujae.structbd.visual;
 
 import javax.swing.*;
 import java.awt.*;

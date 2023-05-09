@@ -1,4 +1,4 @@
-package gui;
+package cu.edu.cujae.structbd.visual;
 
 public class Definitions {
     public static final int APP_WIDTH = 1080;
