@@ -101,9 +101,9 @@ public class BrandInput extends JFrame {
                     String fuelType = getFuelType("").getTextField().getText();
                     double spending = Double.parseDouble(getSpending("").getTextField().getText());
                     if (mode == Mode.Insert) {
-                        ServicesLocator.getBrandServices().insertBrand(brandName, amoSeats, fuelType, spending);
+                        ServicesLocator.getBrandServices().insert(brandName, amoSeats, fuelType, spending);
                     } else {
-                        ServicesLocator.getBrandServices().updateBrand(oldBrandName, brandName, amoSeats, fuelType, spending);
+                        ServicesLocator.getBrandServices().update(oldBrandName, brandName, amoSeats, fuelType, spending);
                     }
                     App.getInstance().getTablesPanel().refresh(Table.Brands);
                 } catch (Exception ex) {
