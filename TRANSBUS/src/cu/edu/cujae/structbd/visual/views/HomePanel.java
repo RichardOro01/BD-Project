@@ -29,18 +29,13 @@ public class HomePanel extends JPanel {
         if (insertButton==null){
             insertButton = new PButton("Insert");
             insertButton.setBounds(20, 40, 70, 30);
-            insertButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //call huffman
-                    String brand=getBrandNameTextField().getText();
-                    try {
-                        ServicesLocator.getBrandServices().insertBrand(brand);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    } catch (ClassNotFoundException ex) {
-                        throw new RuntimeException(ex);
-                    }
+            insertButton.addActionListener(e -> {
+                //call huffman
+                String brand=getBrandNameTextField().getText();
+                try {
+                    ServicesLocator.getBrandServices().insertBrand(brand);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
                 }
             });
         }

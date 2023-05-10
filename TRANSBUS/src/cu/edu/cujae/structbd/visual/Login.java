@@ -90,16 +90,14 @@ public class Login extends JFrame {
 	private void toAccess() {
 		ServicesLocator.setPassword(String.copyValueOf(getPasswordField().getPassword()));
 		ServicesLocator.setUsername(getTxtUser().getText());
-		System.out.println(ServicesLocator.getPassword());
-		if (String.valueOf(passwordField.getPassword()).equals("admin") && txtUser.getText().equals("admin") ) {
+		try {
+			ServicesLocator.getConnection();
 			JOptionPane.showInternalMessageDialog(contentPane,"Autentificación exitosa.","Acceso",JOptionPane.INFORMATION_MESSAGE);
 			App p_window = new App();
 			p_window.setVisible(true);
 			p_window.setLocationRelativeTo(null);
 			dispose();
-
-		}else {
-			
+		} catch (Exception e) {
 			JOptionPane.showInternalMessageDialog(contentPane,"Usuario o contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}

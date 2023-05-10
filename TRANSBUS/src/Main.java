@@ -1,5 +1,7 @@
+import cu.edu.cujae.structbd.visual.Login;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Login.main(null);
     }
 }

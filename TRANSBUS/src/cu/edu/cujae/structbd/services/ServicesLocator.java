@@ -32,7 +32,7 @@ public class ServicesLocator {
         }
         return brandServices;
     }
-    public static Connection getConnection(){
+    public static Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
             String url = "jdbc:postgresql://localhost:5432/transbus";
@@ -41,7 +41,7 @@ public class ServicesLocator {
             props.setProperty("password", password);
             connection = DriverManager.getConnection(url, props);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SQLException("Error");
         }
         return connection;
     }

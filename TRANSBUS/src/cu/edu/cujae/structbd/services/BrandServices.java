@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BrandServices {
-    public void insertBrand(String brandName) throws SQLException, ClassNotFoundException {
+    public void insertBrand(String brandName) throws SQLException {
 
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement llamada = null;
