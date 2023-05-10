@@ -23,18 +23,14 @@ public class BrandServices {
     public void updateBrand(String oldBrandName, String brandName, int amoSeats, String fuelType, double spending) throws SQLException {
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
-        try {
-            call = connection.prepareCall("{ call update_brand(?, ?, ?, ?, ?) }");
-            call.setString(1, oldBrandName);
-            call.setString(2, brandName);
-            call.setInt(3, amoSeats);
-            call.setString(4, fuelType);
-            call.setDouble(5, spending);
-            call.execute();
-            call.close();
-        } catch (SQLException e) {
-            // Manejar excepción
-        }
+        call = connection.prepareCall("{ call update_brand(?, ?, ?, ?, ?) }");
+        call.setString(1, oldBrandName);
+        call.setString(2, brandName);
+        call.setInt(3, amoSeats);
+        call.setString(4, fuelType);
+        call.setDouble(5, spending);
+        call.execute();
+        call.close();
         connection.close();
     }
 
