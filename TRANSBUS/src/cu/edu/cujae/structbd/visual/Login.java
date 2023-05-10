@@ -93,7 +93,7 @@ public class Login extends JFrame {
 		try {
 			ServicesLocator.getConnection();
 			JOptionPane.showInternalMessageDialog(contentPane,"Autentificación exitosa.","Acceso",JOptionPane.INFORMATION_MESSAGE);
-			App p_window = new App();
+			App p_window = App.getInstance();
 			p_window.setVisible(true);
 			p_window.setLocationRelativeTo(null);
 			dispose();

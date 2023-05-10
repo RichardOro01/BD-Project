@@ -11,9 +11,11 @@ import java.awt.*;
 
 public class App extends JFrame {
     private SidePanel sidePanel;
+    private static App app;
     private JPanel bodyPanel;
     private BarOptions options;
     private int height;
+    private TablesPanel tablesPanel;
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
@@ -37,6 +39,13 @@ public class App extends JFrame {
         panel.add(getSidePanel());
         panel.add(getBodyPanel());
         sidePanel.add(getOptions());
+    }
+
+    public static App getInstance() {
+        if (app == null) {
+            app = new App();
+        }
+        return app;
     }
 
     public SidePanel getSidePanel(){
@@ -63,9 +72,16 @@ public class App extends JFrame {
             options.setBackground(Color.WHITE);
             options.setBounds(10,160,sidePanel.getWidth()-10,500);
             options.addOption(new BarOption("Home"), new HomePanel(), true);
-            options.addOption(new BarOption("Tables"), new TablesPanel());
+            options.addOption(new BarOption("Tables"), getTablesPanel());
         }
         return options;
+    }
+
+    public TablesPanel getTablesPanel(){
+        if (tablesPanel == null) {
+            tablesPanel = new TablesPanel();
+        }
+        return tablesPanel;
     }
 
 }

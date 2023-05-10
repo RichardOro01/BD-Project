@@ -7,6 +7,7 @@ import cu.edu.cujae.structbd.visual.inputs.ManagerInput;
 import cu.edu.cujae.structbd.visual.inputs.Mode;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.List;
 
 public class TablesPanel extends JPanel {
@@ -61,7 +62,7 @@ public class TablesPanel extends JPanel {
             insertButton.addActionListener(e -> {
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
                     case "Brands":
-                        ManagerInput.showBrandInput(Mode.Insert);
+                        ManagerInput.showBrandInput();
                         break;
                 }
             });
@@ -69,12 +70,43 @@ public class TablesPanel extends JPanel {
         return insertButton;
     }
 
+    public void refresh(Table table){
+        switch (table){
+            case Brands -> {
+                tableBrands.setTableData(ServicesLocator.getBrandServices().getBrands());
+            }
+            case Couples -> {}
+            case Drivers -> {}
+            case Cars -> {}
+            case Reports -> {}
+            case District -> {}
+            case Roadmaps -> {}
+            case Services -> {}
+            case Contracts -> {}
+            case Free_Covers -> {}
+            case Discrepancies -> {}
+        }
+    }
+
     public PButton getDeleteButton() {
         if (deleteButton == null) {
             deleteButton = new PButton("Delete");
             deleteButton.setBounds(getInsertButton().getX()+getInsertButton().getWidth()+20, getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
-            insertButton.addActionListener(e -> {
-
+            deleteButton.addActionListener(e -> {
+                try {
+                    switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
+                        case "Brands":
+                            int index = getTableBrands().getTable().getSelectedRow();
+                            if (index >= 0) {
+                                String brandName = (String) getTableBrands().getTable().getValueAt(index, 0);
+                                ServicesLocator.getBrandServices().deleteBrand(brandName);
+                                refresh(Table.Brands);
+                            }
+                            break;
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             });
         }
         return deleteButton;
@@ -84,8 +116,19 @@ public class TablesPanel extends JPanel {
         if (updateButton == null) {
             updateButton = new PButton("Update");
             updateButton.setBounds(getDeleteButton().getX()+getDeleteButton().getWidth()+20, getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
-            insertButton.addActionListener(e -> {
-
+            updateButton.addActionListener(e -> {
+                switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
+                    case "Brands":
+                        int index = getTableBrands().getTable().getSelectedRow();
+                        if (index >= 0) {
+                            String brandName = (String) getTableBrands().getTable().getValueAt(index, 0);
+                            String amoSeats = (String) getTableBrands().getTable().getValueAt(index, 1);
+                            String fuelType = (String) getTableBrands().getTable().getValueAt(index, 2);
+                            String spending = (String) getTableBrands().getTable().getValueAt(index, 3);
+                            ManagerInput.showBrandInput(brandName, amoSeats, fuelType, spending);
+                        }
+                        break;
+                }
             });
         }
         return updateButton;
