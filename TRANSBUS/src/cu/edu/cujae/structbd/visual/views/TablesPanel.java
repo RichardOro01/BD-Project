@@ -1,5 +1,6 @@
 package cu.edu.cujae.structbd.visual.views;
 import cu.edu.cujae.structbd.services.ServicesLocator;
+import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
@@ -105,7 +106,7 @@ public class TablesPanel extends JPanel {
                             break;
                     }
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    App.getInstance().handleError(ex);
                 }
             });
         }

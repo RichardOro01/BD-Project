@@ -87,7 +87,7 @@ public class BrandInput extends JFrame {
         return spending;
     }
 
-    public PButton getSubmitButton() {
+    public PButton getSubmitButton() throws RuntimeException{
         if (submitButton == null) {
             submitButton = new PButton("Insert");
             submitButton.setBounds(getWidth()-100, 120, 60, 30);
@@ -95,21 +95,20 @@ public class BrandInput extends JFrame {
                 submitButton.setText("Update");
             }
             submitButton.addActionListener(e -> {
-                String brandName = getBrandName("").getTextField().getText();
-                int amoSeats = Integer.parseInt(getAmoSeats("").getTextField().getText());
-                String fuelType = getFuelType("").getTextField().getText();
-                double spending = Double.parseDouble(getSpending("").getTextField().getText());
                 try {
+                    String brandName = getBrandName("").getTextField().getText();
+                    int amoSeats = Integer.parseInt(getAmoSeats("").getTextField().getText());
+                    String fuelType = getFuelType("").getTextField().getText();
+                    double spending = Double.parseDouble(getSpending("").getTextField().getText());
                     if (mode == Mode.Insert) {
                         ServicesLocator.getBrandServices().insertBrand(brandName, amoSeats, fuelType, spending);
                     } else {
                         ServicesLocator.getBrandServices().updateBrand(oldBrandName, brandName, amoSeats, fuelType, spending);
                     }
                     App.getInstance().getTablesPanel().refresh(Table.Brands);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                } catch (Exception ex) {
+                    App.getInstance().handleError(ex);
                 }
-
             });
         }
         return submitButton;

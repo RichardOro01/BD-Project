@@ -48,6 +48,10 @@ public class App extends JFrame {
         return app;
     }
 
+    public void handleError (Exception e) {
+        JOptionPane.showInternalMessageDialog(getContentPane(),e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     public SidePanel getSidePanel(){
         if (sidePanel==null){
             sidePanel = new SidePanel(0, Definitions.MARGING, Definitions.SIDE_BAR_WIDTH, height-Definitions.MARGING);
