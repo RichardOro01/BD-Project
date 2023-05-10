@@ -65,6 +65,8 @@ public class TablesPanel extends JPanel {
                     case "Brands":
                         ManagerInput.showBrandInput();
                         break;
+                    case "Cars":
+                        ManagerInput.showCarInput();
                 }
             });
         }
@@ -78,7 +80,9 @@ public class TablesPanel extends JPanel {
             }
             case Couples -> {}
             case Drivers -> {}
-            case Cars -> {}
+            case Cars -> {
+                tableCars.setTableData(ServicesLocator.getCarServices().getAll());
+            }
             case Reports -> {}
             case District -> {}
             case Roadmaps -> {}
@@ -95,15 +99,24 @@ public class TablesPanel extends JPanel {
             deleteButton.setBounds(getInsertButton().getX()+getInsertButton().getWidth()+20, getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
             deleteButton.addActionListener(e -> {
                 try {
-                    switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
-                        case "Brands":
-                            int index = getTableBrands().getTable().getSelectedRow();
+                    int index;
+                    switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())) {
+                        case "Brands" -> {
+                            index = getTableBrands().getTable().getSelectedRow();
                             if (index >= 0) {
                                 String brandName = (String) getTableBrands().getTable().getValueAt(index, 0);
                                 ServicesLocator.getBrandServices().deleteBrand(brandName);
                                 refresh(Table.Brands);
                             }
-                            break;
+                        }
+                        case "Cars" -> {
+                            index = getTableCars().getTable().getSelectedRow();
+                            if (index >= 0) {
+                                String number = (String) getTableCars().getTable().getValueAt(index, 0);
+                                ServicesLocator.getCarServices().delete(number);
+                                refresh(Table.Brands);
+                            }
+                        }
                     }
                 } catch (SQLException ex) {
                     App.getInstance().handleError(ex);
@@ -147,9 +160,9 @@ public class TablesPanel extends JPanel {
 
     public TableScroll getTableCars() {
         if (tableCars == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
+            String[] columns = new String[]{"Number", "Plate", "Couple", "Brand"};
             tableCars = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getBrands();
+            List<List<String>> data = ServicesLocator.getCarServices().getAll();
             tableCars.setTableData(data);
         }
         return tableCars;

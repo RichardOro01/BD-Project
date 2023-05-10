@@ -50,6 +50,7 @@ public class App extends JFrame {
 
     public void handleError (Exception e) {
         JOptionPane.showInternalMessageDialog(getContentPane(),e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
     }
 
     public SidePanel getSidePanel(){
