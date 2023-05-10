@@ -69,7 +69,7 @@ public class Login extends JFrame {
 		setTitle("Autentificaci\u00F3n Transbus");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, Definitions.APP_WIDTH, Definitions.APP_HEIGHT);
+		setBounds(0, 0, 720, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,9 +110,9 @@ public class Login extends JFrame {
 			ballenaLogo.setHorizontalAlignment(SwingConstants.CENTER);
 			
 			ballenaLogo.setBounds(167, 59, 353, 176);
-			//  ImageIcon ico=new ImageIcon(getClass().getResource("/com/images/ballena.png"));
-			//  ImageIcon img=new ImageIcon(ico.getImage().getScaledInstance(ballenaLogo.getWidth(), ballenaLogo.getHeight(), Image.SCALE_SMOOTH));
-			//  ballenaLogo.setIcon(img);
+			ImageIcon ico=new ImageIcon(getClass().getResource("./img/logo login.jpg"));
+			ImageIcon img=new ImageIcon(ico.getImage().getScaledInstance(ballenaLogo.getWidth(), ballenaLogo.getHeight(), Image.SCALE_SMOOTH));
+			ballenaLogo.setIcon(img);
 			
 		}
 		return ballenaLogo;
