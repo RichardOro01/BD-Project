@@ -4,6 +4,7 @@ import cu.edu.cujae.structbd.visual.components.BarOption;
 import cu.edu.cujae.structbd.visual.components.BarOptions;
 import cu.edu.cujae.structbd.visual.components.SidePanel;
 import cu.edu.cujae.structbd.visual.views.HomePanel;
+import cu.edu.cujae.structbd.visual.views.TablesPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,6 +64,7 @@ public class App extends JFrame {
             options.setBackground(Color.WHITE);
             options.setBounds(10,160,sidePanel.getWidth()-10,500);
             options.addOption(new BarOption("Home"), new HomePanel(), true);
+            options.addOption(new BarOption("Tables"), new TablesPanel());
         }
         return options;
     }
