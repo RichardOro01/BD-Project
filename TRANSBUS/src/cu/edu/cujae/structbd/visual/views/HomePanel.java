@@ -32,11 +32,7 @@ public class HomePanel extends JPanel {
             insertButton.addActionListener(e -> {
                 //call huffman
                 String brand=getBrandNameTextField().getText();
-                try {
-                    ServicesLocator.getBrandServices().insertBrand(brand);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+
             });
         }
         return insertButton;

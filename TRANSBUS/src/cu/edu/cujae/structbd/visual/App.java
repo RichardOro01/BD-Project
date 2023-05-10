@@ -14,7 +14,6 @@ public class App extends JFrame {
     private JPanel bodyPanel;
     private BarOptions options;
     private int height;
-    private int margin = 6;
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
@@ -42,7 +41,7 @@ public class App extends JFrame {
 
     public SidePanel getSidePanel(){
         if (sidePanel==null){
-            sidePanel = new SidePanel(0,margin,240, height-margin);
+            sidePanel = new SidePanel(0, Definitions.MARGING, Definitions.SIDE_BAR_WIDTH, height-Definitions.MARGING);
         }
         return sidePanel;
     }
@@ -52,7 +51,7 @@ public class App extends JFrame {
             bodyPanel = new JPanel();
             bodyPanel.setLayout(null);
             int x = sidePanel.getWidth()+6;
-            bodyPanel.setBounds(sidePanel.getWidth()+margin,margin, this.getWidth()-x, height-margin);
+            bodyPanel.setBounds(sidePanel.getWidth()+Definitions.MARGING,Definitions.MARGING, this.getWidth()-x, height-Definitions.MARGING);
             bodyPanel.setBackground(Color.WHITE);
         }
         return bodyPanel;
