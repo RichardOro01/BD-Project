@@ -3,6 +3,8 @@ import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
+import cu.edu.cujae.structbd.visual.inputs.ManagerInput;
+import cu.edu.cujae.structbd.visual.inputs.Mode;
 
 import javax.swing.*;
 import java.util.List;
@@ -59,7 +61,7 @@ public class TablesPanel extends JPanel {
             insertButton.addActionListener(e -> {
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
                     case "Brands":
-                        System.out.println(1);
+                        ManagerInput.showBrandInput(Mode.Insert);
                         break;
                 }
             });
