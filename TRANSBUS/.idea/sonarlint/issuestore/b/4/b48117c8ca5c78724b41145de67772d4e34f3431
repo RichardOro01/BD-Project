@@ -1,0 +1,16 @@
+
+g	java:S112Z"FDefine and throw a dedicated exception instead of using a generic one.(Ú§ìÌÿÿÿÿÿ8ó¼Ž±€1
+b
+java:S3252"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(Òœ Ð
+b
+java:S3252/"LUse static access with "javax.swing.WindowConstants" for "DISPOSE_ON_CLOSE".(Òœ Ð
+X
+java:S1117c"=Rename "brandName" which hides the field declared at line 14.(£·±Öþÿÿÿÿ
+W
+java:S1117d"<Rename "amoSeats" which hides the field declared at line 15.(ðœ²ºúÿÿÿÿ
+R
+java:S1117e"<Rename "fuelType" which hides the field declared at line 16.(áÜ›ß
+R
+java:S1117f"<Rename "spending" which hides the field declared at line 17.(ºæ·ù
+O
+java:S1128	"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8ïÂ­¶€1

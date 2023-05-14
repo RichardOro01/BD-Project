@@ -1,40 +1,43 @@
 package cu.edu.cujae.structbd.visual.views;
 
-import cu.edu.cujae.structbd.services.ServicesLocator;
-import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TextAreaScroll;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
+import java.awt.*;
 
 public class HomePanel extends JPanel {
-    private PButton insertButton;
-    private JTextField brandNameTextField;
+    private JLabel logo;
+    private TextAreaScroll developers;
 
     public HomePanel(){
-        add(getInsertButton());
-        add(getBrandNameTextField());
+        add(getLogo());
+        //add(getDevelopers());
     }
 
-    public JTextField getBrandNameTextField(){
-        if (brandNameTextField==null){
-            brandNameTextField = new JTextField();
-            brandNameTextField.setBounds(100, 40, 70, 30);
-        }
-        return brandNameTextField;
-    }
-    public PButton getInsertButton(){
-        if (insertButton==null){
-            insertButton = new PButton("Insert");
-            insertButton.setBounds(20, 40, 70, 30);
-            insertButton.addActionListener(e -> {
-                //call huffman
-                String brand=getBrandNameTextField().getText();
+    private JLabel getLogo() {
+        if (logo == null) {
+            logo = new JLabel("");
+            logo.setFont(new Font("Tekton Pro", Font.PLAIN, 5));
+            logo.setLabelFor(logo);
+            logo.setHorizontalAlignment(SwingConstants.CENTER);
 
-            });
+            logo.setBounds(167, 0, 400, 400);
+            ImageIcon ico=new ImageIcon(getClass().getResource("../img/logo home.png"));
+            ImageIcon img=new ImageIcon(ico.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
+            logo.setIcon(img);
+
         }
-        return insertButton;
+        return logo;
     }
+
+    private TextAreaScroll getDevelopers() {
+        if (developers == null) {
+            developers = new TextAreaScroll("ASD");
+            developers.setBounds(40, 500, 100, 100);
+        }
+        return developers;
+    }
+
+
+
 }

@@ -1,0 +1,36 @@
+
+b
+java:S1192™"KDefine a constant instead of duplicating this literal "Fuel Type" 10 times.(žáÓ´
+^
+java:S1192™"GDefine a constant instead of duplicating this literal "Seats" 10 times.(žáÓ´
+a
+java:S1192™"JDefine a constant instead of duplicating this literal "Spending" 10 times.(žáÓ´
+b
+java:S1192,"GDefine a constant instead of duplicating this literal "Brands" 4 times.(üƒÊ³üÿÿÿÿ
+f
+java:S1301@"KReplace this "switch" statement by "if" statements to increase readability.(ÊÏ ºøÿÿÿÿ
+f
+java:S1301g"KReplace this "switch" statement by "if" statements to increase readability.(ÊÏ ºøÿÿÿÿ
+g
+java:S1301†"KReplace this "switch" statement by "if" statements to increase readability.(ÊÏ ºøÿÿÿÿ
+T
+java:S3252(">Use static access with "javax.swing.SwingConstants" for "TOP".(á¡¤°
+N	java:S106)"9Replace this use of System.out or System.err by a logger.(ØŽŽ¬
+<	java:S131@""Add a default case to this switch.(ÊÏ ºøÿÿÿÿ
+7
+java:S6205N"Remove this redundant block.(í·Üóüÿÿÿÿ
+>	java:S108Q")Either remove or fill this block of code.(áÛœï
+>	java:S108R")Either remove or fill this block of code.(àÏ¾Ô
+7
+java:S6205S"Remove this redundant block.(ŒË°£üÿÿÿÿ
+C	java:S108V")Either remove or fill this block of code.(Ç¨«ùøÿÿÿÿ
+>	java:S108W")Either remove or fill this block of code.(·Îí¥
+C	java:S108X")Either remove or fill this block of code.(»Ãâ¢ùÿÿÿÿ
+C	java:S108Y")Either remove or fill this block of code.(Ç£¶ªýÿÿÿÿ
+>	java:S108Z")Either remove or fill this block of code.(öß¯Ü
+>	java:S108[")Either remove or fill this block of code.(Ñ‰¸²
+C	java:S108\")Either remove or fill this block of code.(Í¡Ô ýÿÿÿÿ
+<	java:S131g""Add a default case to this switch.(ÊÏ ºøÿÿÿÿ
+=	java:S131†""Add a default case to this switch.(ÊÏ ºøÿÿÿÿ
+b
+java:S1128"ERemove this unused import 'cu.edu.cujae.structbd.visual.inputs.Mode'.(ôõÀÀ8éÃ­¶€1
