@@ -25,6 +25,17 @@ public class BarOptions extends JPanel{
         setLayout(null);
     }
 
+    public void render() {
+        removeAll();
+        int currentY = 0;
+        for (BarOption option: optionList) {
+            add(option);
+            option.setBounds(0, currentY + margin, getWidth()-10, optionHeight);
+            currentY += optionHeight;
+        }
+        refreshSize();
+    }
+
     //default values
     public BarOptions(JPanel panel){
         this(panel, 50, 0);
@@ -33,7 +44,7 @@ public class BarOptions extends JPanel{
         this(panel,optionHeight,0);
     }
 
-    public void addOption(BarOption option, JPanel panel, boolean active){
+    public BarOption addOption(BarOption option, JPanel panel, boolean active){
 
         //Default active panel
         if (active)
@@ -61,26 +72,36 @@ public class BarOptions extends JPanel{
                 activePanel=panel;
             }
         });
+        return option;
     }
 
     public BarOption addOption(BarOption option) {
-        option.setDropeable(true);
+        option.setDroppable(true);
+        option.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                toogleDrop(option);
+            }
+        });
         addToOptions(option);
         return option;
     }
 
+    public BarOption addOption(BarOption option, BarOption toOption) {
+
+        return option;
+    }
+
+    private boolean toogleDrop(BarOption option) {
+        boolean toSet = !option.getDropped();
+        option.setDropped(toSet);
+        return toSet;
+    }
+
     private void addToOptions(BarOption option) {
-        add(option);
-        int optionListSize = optionList.size();
-        if (optionListSize>0) {
-            BarOption last = optionList.get(optionListSize - 1);
-            Rectangle r = last.getBounds();
-            option.setBounds(r.x, r.y + r.height + margin, getWidth()-10, optionHeight);
-        }else{
-            option.setBounds(0, 0, getWidth()-10, optionHeight);
-        }
         optionList.add(option);
-        refreshSize();
+        render();
     }
 
     public void addOption(BarOption option, JPanel panel){

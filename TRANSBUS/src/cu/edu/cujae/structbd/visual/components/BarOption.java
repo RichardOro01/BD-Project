@@ -9,15 +9,16 @@ import java.util.Objects;
 public class BarOption extends JPanel{
     private JLabel label;
     private JLabel icon;
-    private boolean isDropeable;
+    private String text;
+    private boolean dropped;
+    private boolean isDroppable;
 
     public BarOption(String text){
         super(new BorderLayout());
         setBackground(Color.WHITE);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        getLabel().setText(text);
+        setText(text);
         renderOption();
-        add(getLabel(), BorderLayout.CENTER);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -35,8 +36,19 @@ public class BarOption extends JPanel{
     }
 
     private void renderOption() {
-        icon=null;
-        add(getIcon(), BorderLayout.WEST);
+        removeAll();
+        repaint();
+        icon = null;
+        Box horizontalBox = Box.createHorizontalBox();
+        horizontalBox.add(Box.createHorizontalStrut(24));
+        if (isDroppable()) {
+            add(getIcon(), BorderLayout.WEST);
+        } else {
+            add(horizontalBox, BorderLayout.WEST);
+        }
+        getLabel().setText(text);
+        add(getLabel(), BorderLayout.CENTER);
+        repaint();
     }
 
     public JLabel getLabel() {
@@ -53,25 +65,39 @@ public class BarOption extends JPanel{
     private JLabel getIcon() {
         if (icon == null) {
             icon = new JLabel("");
-            icon.setBounds(0, 0, 24, 24);
-
-            if (isDropeable()) {
-
-                ImageIcon icoImgLock=new ImageIcon(Objects.requireNonNull(getClass().getResource("../img/chevron-right-regular-48.png")));
-                ImageIcon imgLock=new ImageIcon(icoImgLock.getImage().getScaledInstance(icon.getWidth(), icon.getHeight(), Image.SCALE_DEFAULT));
-                icon.setIcon(imgLock);
-            }
+            icon.setBounds(0, 18, 24, 24);
+            String iconDir = this.dropped? "../img/chevron-down-regular-48.png":"../img/chevron-right-regular-48.png";
+            ImageIcon icoImgLock=new ImageIcon(Objects.requireNonNull(getClass().getResource(iconDir)));
+            ImageIcon imgLock=new ImageIcon(icoImgLock.getImage().getScaledInstance(icon.getWidth(), icon.getHeight(), Image.SCALE_DEFAULT));
+            icon.setIcon(imgLock);
         }
         return icon;
     }
 
-    public boolean isDropeable() {
-        return isDropeable;
+    public boolean isDroppable() {
+        return isDroppable;
     }
 
-    public void setDropeable(boolean dropeable) {
-        isDropeable = dropeable;
+    public void setDroppable(boolean droppable) {
+        isDroppable = droppable;
         renderOption();
+    }
+
+    public void setDropped(boolean dropped) {
+        this.dropped = dropped;
+        renderOption();
+    }
+
+    public boolean getDropped() {
+        return this.dropped;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
 
