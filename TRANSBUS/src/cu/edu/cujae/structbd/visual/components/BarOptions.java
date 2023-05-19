@@ -22,16 +22,14 @@ public class BarOptions extends JPanel{
         this.optionHeight = optionHeight;
         this.margin = margin;
         this.contentPanel=panel;
-        setLayout(null);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
     public void render() {
         removeAll();
-        int currentY = 0;
         for (BarOption option: optionList) {
             add(option);
-            option.setBounds(0, currentY + margin, getWidth()-10, optionHeight);
-            currentY += optionHeight;
+            add(Box.createRigidArea(new Dimension(0,margin)));
         }
         refreshSize();
     }

@@ -65,7 +65,7 @@ public class BarOption extends JPanel{
     private JLabel getIcon() {
         if (icon == null) {
             icon = new JLabel("");
-            icon.setBounds(0, 18, 24, 24);
+            icon.setBounds(0, 20, 24, 24);
             String iconDir = this.dropped? "../img/chevron-down-regular-48.png":"../img/chevron-right-regular-48.png";
             ImageIcon icoImgLock=new ImageIcon(Objects.requireNonNull(getClass().getResource(iconDir)));
             ImageIcon imgLock=new ImageIcon(icoImgLock.getImage().getScaledInstance(icon.getWidth(), icon.getHeight(), Image.SCALE_DEFAULT));
