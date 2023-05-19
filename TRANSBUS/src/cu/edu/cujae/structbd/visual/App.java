@@ -77,7 +77,8 @@ public class App extends JFrame {
             options.setBackground(Color.WHITE);
             options.setBounds(10,160,sidePanel.getWidth()-10,500);
             options.addOption(new BarOption("Home"), new HomePanel(), true);
-            options.addOption(new BarOption("Tables"), getTablesPanel());
+            options.addOption(new BarOption("Management"));
+            //options.addOption(new BarOption("Tables"), getTablesPanel());
         }
         return options;
     }

@@ -50,6 +50,26 @@ public class BarOptions extends JPanel{
         panel.setBackground(contentPanel.getBackground());
 
         //add option to options container
+        addToOptions(option);
+
+        option.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                activePanel.setVisible(false);
+                panel.setVisible(true);
+                activePanel=panel;
+            }
+        });
+    }
+
+    public BarOption addOption(BarOption option) {
+        option.setDropeable(true);
+        addToOptions(option);
+        return option;
+    }
+
+    private void addToOptions(BarOption option) {
         add(option);
         int optionListSize = optionList.size();
         if (optionListSize>0) {
@@ -61,16 +81,6 @@ public class BarOptions extends JPanel{
         }
         optionList.add(option);
         refreshSize();
-
-        option.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                activePanel.setVisible(false);
-                panel.setVisible(true);
-                activePanel=panel;
-            }
-        });
     }
 
     public void addOption(BarOption option, JPanel panel){
