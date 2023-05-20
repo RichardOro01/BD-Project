@@ -1,21 +1,28 @@
 package cu.edu.cujae.structbd.visual.components;
 
+import cu.edu.cujae.structbd.visual.App;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BarOption extends JPanel{
     private JLabel label;
+    private boolean hidden;
     private JLabel icon;
     private String text;
     private boolean dropped;
     private boolean isDroppable;
+    private ArrayList<BarOption> optionsList;
 
     public BarOption(String text){
         super(new BorderLayout());
         setBackground(Color.WHITE);
+        optionsList = new ArrayList<>();
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setText(text);
         renderOption();
@@ -29,7 +36,6 @@ public class BarOption extends JPanel{
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-
                 setBackground(Color.WHITE);
             }
         });
@@ -85,10 +91,13 @@ public class BarOption extends JPanel{
 
     public void setDropped(boolean dropped) {
         this.dropped = dropped;
+        for (BarOption option: getOptionsList()) {
+            option.setHidden(!dropped);
+        }
         renderOption();
     }
 
-    public boolean getDropped() {
+    public boolean isDropped() {
         return this.dropped;
     }
 
@@ -100,5 +109,21 @@ public class BarOption extends JPanel{
         this.text = text;
     }
 
+    public List<BarOption> getOptionsList() {
+        return optionsList;
+    }
+
+    public BarOption addOption(BarOption option) {
+        optionsList.add(option);
+        return option;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 
 }

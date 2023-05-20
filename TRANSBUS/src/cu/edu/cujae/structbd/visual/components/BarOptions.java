@@ -1,4 +1,6 @@
 package cu.edu.cujae.structbd.visual.components;
+import cu.edu.cujae.structbd.visual.App;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -23,15 +25,26 @@ public class BarOptions extends JPanel{
         this.margin = margin;
         this.contentPanel=panel;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //setLayout(null);
     }
 
     public void render() {
+        setBackground(Color.GRAY);
         removeAll();
+        int size = 0;
+        //int currentY = 0;
         for (BarOption option: optionList) {
-            add(option);
-            add(Box.createRigidArea(new Dimension(0,margin)));
+            if (!option.isHidden()) {
+                add(option);
+                add(Box.createRigidArea(new Dimension(0, margin)));
+                //option.setBounds(0, currentY + margin, getWidth()-10, optionHeight);
+                //currentY += optionHeight;
+                size += optionHeight + margin;
+            }
         }
-        refreshSize();
+
+        setBounds(getX(),getY(),getWidth(),size);
+
     }
 
     //default values
@@ -73,27 +86,32 @@ public class BarOptions extends JPanel{
         return option;
     }
 
-    public BarOption addOption(BarOption option) {
+    public BarOption addParentOption(BarOption option) {
         option.setDroppable(true);
         option.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 toogleDrop(option);
+                App.getInstance().getOptions().revalidate();
+                App.getInstance().repaint();
             }
         });
         addToOptions(option);
         return option;
     }
 
-    public BarOption addOption(BarOption option, BarOption toOption) {
-
+    public BarOption addSubOption(BarOption option, JPanel target, BarOption toOption) {
+        toOption.addOption(option);
+        option.setHidden(true);
+        addOption(option, target);
         return option;
     }
 
     private boolean toogleDrop(BarOption option) {
-        boolean toSet = !option.getDropped();
+        boolean toSet = !option.isDropped();
         option.setDropped(toSet);
+        render();
         return toSet;
     }
 
@@ -104,10 +122,6 @@ public class BarOptions extends JPanel{
 
     public void addOption(BarOption option, JPanel panel){
         addOption(option, panel, false);
-    }
-
-    private void refreshSize(){
-        setBounds(getX(),getY(),getWidth(),optionList.size()*(optionHeight+margin));
     }
 
 }

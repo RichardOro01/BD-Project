@@ -4,6 +4,7 @@ import cu.edu.cujae.structbd.visual.components.BarOption;
 import cu.edu.cujae.structbd.visual.components.BarOptions;
 import cu.edu.cujae.structbd.visual.components.SidePanel;
 import cu.edu.cujae.structbd.visual.views.HomePanel;
+import cu.edu.cujae.structbd.visual.views.ServicesPanel;
 import cu.edu.cujae.structbd.visual.views.TablesPanel;
 
 import javax.swing.*;
@@ -73,13 +74,13 @@ public class App extends JFrame {
 
     public BarOptions getOptions(){
         if (options==null){
-            options = new BarOptions(getBodyPanel(),60);
+            options = new BarOptions(getBodyPanel(),60, 1);
             options.setBackground(Color.WHITE);
             options.setBounds(10,160,sidePanel.getWidth()-10,500);
             options.addOption(new BarOption("Home"), new HomePanel(), true);
-            BarOption management = options.addOption(new BarOption("Management"));
-            options.addOption(new BarOption("Services"), management);
-            options.addOption(new BarOption("Assets"), management);
+            BarOption management = options.addParentOption(new BarOption("Management"));
+            options.addSubOption(new BarOption("Services"), new ServicesPanel(), management);
+            options.addSubOption(new BarOption("Assets"), new ServicesPanel(), management);
             //options.addOption(new BarOption("Tables"), getTablesPanel());
         }
         return options;
