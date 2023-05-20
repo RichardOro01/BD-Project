@@ -32,7 +32,7 @@ public class TableScroll extends JScrollPane {
     }
 
     public void setTableData(List<List<String>> list) {
-        Object obj[][]=new Object[list.size()][4];
+        Object[][] obj=new Object[list.size()][4];
         for (int i=0; i<list.size(); i++) {
             list.get(i).toArray(obj[i]);
         }
@@ -40,15 +40,15 @@ public class TableScroll extends JScrollPane {
     }
 
     private void setTableModel() {
-        boolean[] editables = new boolean[columns.length];
-        Arrays.fill(editables, false);
+        boolean[] editable = new boolean[columns.length];
+        Arrays.fill(editable, false);
         this.getTable().setModel(new DefaultTableModel(
                 data,
                 columns
         ) {
             @Serial
             private static final long serialVersionUID = -7368912137855283709L;
-            final boolean[] columnEditables = editables;
+            final boolean[] columnEditables = editable;
 
             @Override
             public boolean isCellEditable(int row, int column) {
