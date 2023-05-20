@@ -5,13 +5,12 @@ import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
 import cu.edu.cujae.structbd.visual.inputs.ManagerInput;
-import cu.edu.cujae.structbd.visual.inputs.Mode;
 
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TablesPanel extends JPanel {
+public class AssetsPanel extends JPanel {
     private JTabbedPane tabbedPane;
     private TableScroll tableBrands;
     private TableScroll tableCars;
@@ -28,7 +27,7 @@ public class TablesPanel extends JPanel {
     private PButton deleteButton;
     private PButton updateButton;
 
-    public TablesPanel(){
+    public AssetsPanel(){
         add(getTabbedPane());
         add(getInsertButton());
         add(getDeleteButton());

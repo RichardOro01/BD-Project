@@ -5,7 +5,7 @@ import cu.edu.cujae.structbd.visual.components.BarOptions;
 import cu.edu.cujae.structbd.visual.components.SidePanel;
 import cu.edu.cujae.structbd.visual.views.HomePanel;
 import cu.edu.cujae.structbd.visual.views.ServicesPanel;
-import cu.edu.cujae.structbd.visual.views.TablesPanel;
+import cu.edu.cujae.structbd.visual.views.AssetsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,11 +16,11 @@ public class App extends JFrame {
     private JPanel bodyPanel;
     private BarOptions options;
     private int height;
-    private TablesPanel tablesPanel;
+    private AssetsPanel tablesPanel;
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
-            App frame = new App();
+            App frame = App.getInstance();
             frame.setVisible(true);
         });
     }
@@ -80,15 +80,14 @@ public class App extends JFrame {
             options.addOption(new BarOption("Home"), new HomePanel(), true);
             BarOption management = options.addParentOption(new BarOption("Management"));
             options.addSubOption(new BarOption("Services"), new ServicesPanel(), management);
-            options.addSubOption(new BarOption("Assets"), new ServicesPanel(), management);
-            //options.addOption(new BarOption("Tables"), getTablesPanel());
+            options.addSubOption(new BarOption("Assets"), new AssetsPanel(), management);
         }
         return options;
     }
 
-    public TablesPanel getTablesPanel(){
+    public AssetsPanel getTablesPanel(){
         if (tablesPanel == null) {
-            tablesPanel = new TablesPanel();
+            tablesPanel = new AssetsPanel();
         }
         return tablesPanel;
     }
