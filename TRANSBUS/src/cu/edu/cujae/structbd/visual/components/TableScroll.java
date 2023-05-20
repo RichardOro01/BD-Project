@@ -32,11 +32,13 @@ public class TableScroll extends JScrollPane {
     }
 
     public void setTableData(List<List<String>> list) {
-        Object[][] obj=new Object[list.size()][4];
-        for (int i=0; i<list.size(); i++) {
-            list.get(i).toArray(obj[i]);
+        if (list!=null && !list.isEmpty()) {
+            Object[][] obj=new Object[list.size()][list.get(0).size()];
+            for (int i=0; i<list.size(); i++) {
+                list.get(i).toArray(obj[i]);
+            }
+            setTableData(obj);
         }
-        setTableData(obj);
     }
 
     private void setTableModel() {

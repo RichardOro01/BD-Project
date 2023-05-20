@@ -1,6 +1,9 @@
 package cu.edu.cujae.structbd.dto;
 
-public class BrandDTO {
+import java.util.LinkedList;
+import java.util.List;
+
+public class BrandDTO implements DTO{
     private String brandName;
     private int amoSeats;
     private String fuelType;
@@ -13,6 +16,16 @@ public class BrandDTO {
         this.fuelType = fuelType;
         this.spending = spending;
         this.brandCode = brandCode;
+    }
+
+    public BrandDTO(List<String> columnNames, List<String> values) throws RuntimeException {
+        if (columnNames != null && values != null && columnNames.size() == values.size()) {
+            for (int i = 0; i < columnNames.size(); i++) {
+                setData(columnNames.get(i), values.get(i));
+            }
+        } else {
+            throw new RuntimeException("Data error");
+        }
     }
 
     public String getBrandName() {
@@ -49,5 +62,33 @@ public class BrandDTO {
 
     public int getBrandCode() {
         return brandCode;
+    }
+
+    public boolean setData(String column, String payload) {
+        switch (column) {
+            case "brand_code" -> {brandCode=Integer.parseInt(payload);}
+            case "brand_name" -> {brandName=payload;}
+            case "amo_seats" -> {amoSeats=Integer.parseInt(payload);}
+            case "fuel_type" -> {fuelType=payload;}
+            case "spending" -> {spending=Double.parseDouble(payload);}
+            default -> {return false;}
+        }
+        return true;
+    }
+
+    public List<String> getData(List<String> columns) {
+        List<String> result = new LinkedList<>();
+        for (String column: columns) {
+            switch (column) {
+                case "brand_code" -> {result.add(String.valueOf(brandCode));}
+                case "brand_name" -> {result.add(brandName);}
+                case "amo_seats" -> {result.add(String.valueOf(amoSeats));}
+                case "fuel_type" -> {result.add(fuelType);}
+                case "spending" -> {result.add(String.valueOf(spending));}
+                default -> {}
+            }
+        }
+
+        return result;
     }
 }

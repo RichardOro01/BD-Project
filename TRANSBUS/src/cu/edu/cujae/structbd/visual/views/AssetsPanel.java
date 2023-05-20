@@ -1,4 +1,6 @@
 package cu.edu.cujae.structbd.visual.views;
+import cu.edu.cujae.structbd.dto.BrandDTO;
+import cu.edu.cujae.structbd.dto.DTO;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.Definitions;
@@ -8,6 +10,7 @@ import cu.edu.cujae.structbd.visual.inputs.ManagerInput;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AssetsPanel extends JPanel {
@@ -75,12 +78,12 @@ public class AssetsPanel extends JPanel {
     public void refresh(Table table){
         switch (table){
             case Brands -> {
-                tableBrands.setTableData(ServicesLocator.getBrandServices().getAll());
+                //tableBrands.setTableData(ServicesLocator.getBrandServices().getAll());
             }
             case Couples -> {}
             case Drivers -> {}
             case Cars -> {
-                tableCars.setTableData(ServicesLocator.getCarServices().getAll());
+                //tableCars.setTableData(ServicesLocator.getCarServices().getAll());
             }
             case Reports -> {}
             case District -> {}
@@ -151,7 +154,11 @@ public class AssetsPanel extends JPanel {
         if (tableBrands == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableBrands = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            List<DTO> dataDTO = ServicesLocator.getBrandServices().getAll();
+            List<List<String>> data = new LinkedList<>();
+            for (DTO brand: dataDTO) {
+                data.add(((BrandDTO)brand).getData(List.of("brand_name", "amo_seats", "fuel_type", "spending")));
+            }
             tableBrands.setTableData(data);
         }
         return tableBrands;
@@ -161,8 +168,8 @@ public class AssetsPanel extends JPanel {
         if (tableCars == null) {
             String[] columns = new String[]{"Number", "Plate", "Couple", "Brand"};
             tableCars = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getCarServices().getAll();
-            tableCars.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getCarServices().getAll();
+            //tableCars.setTableData(data);
         }
         return tableCars;
     }
@@ -171,8 +178,8 @@ public class AssetsPanel extends JPanel {
         if (tableContracts == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableContracts = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableContracts.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //.setTableData(data);
         }
         return tableContracts;
     }
@@ -181,8 +188,8 @@ public class AssetsPanel extends JPanel {
         if (tableCouples == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableCouples = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableCouples.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableCouples.setTableData(data);
         }
         return tableCouples;
     }
@@ -191,8 +198,8 @@ public class AssetsPanel extends JPanel {
         if (tableDiscrepancies == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableDiscrepancies = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableDiscrepancies.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableDiscrepancies.setTableData(data);
         }
         return tableDiscrepancies;
     }
@@ -201,8 +208,8 @@ public class AssetsPanel extends JPanel {
         if (tableDistricts == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableDistricts = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableDistricts.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableDistricts.setTableData(data);
         }
         return tableDistricts;
     }
@@ -211,8 +218,8 @@ public class AssetsPanel extends JPanel {
         if (tableDrivers == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableDrivers = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableDrivers.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableDrivers.setTableData(data);
         }
         return tableDrivers;
     }
@@ -221,8 +228,8 @@ public class AssetsPanel extends JPanel {
         if (tableReports == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableReports = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableReports.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableReports.setTableData(data);
         }
         return tableReports;
     }
@@ -231,8 +238,8 @@ public class AssetsPanel extends JPanel {
         if (tableRoadmaps == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableRoadmaps = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableRoadmaps.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableRoadmaps.setTableData(data);
         }
         return tableRoadmaps;
     }
@@ -241,8 +248,8 @@ public class AssetsPanel extends JPanel {
         if (tableServices == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableServices = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableServices.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableServices.setTableData(data);
         }
         return tableServices;
     }
@@ -251,8 +258,8 @@ public class AssetsPanel extends JPanel {
         if (tableFreeCovers == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableFreeCovers = new TableScroll(columns);
-            List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            tableFreeCovers.setTableData(data);
+            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
+            //tableFreeCovers.setTableData(data);
         }
         return tableFreeCovers;
     }

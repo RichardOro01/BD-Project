@@ -1,5 +1,7 @@
 package cu.edu.cujae.structbd.services;
 
+import cu.edu.cujae.structbd.dto.BrandDTO;
+import cu.edu.cujae.structbd.dto.DTO;
 import cu.edu.cujae.structbd.utils.Conection;
 
 import javax.swing.*;
@@ -9,9 +11,16 @@ import java.util.List;
 
 public class CarServices implements Service {
     @Override
-    public List<List<String>> getAll() {
+    public List<DTO> getAll() {
         String queryToExecute = "SELECT * FROM car";
-        return Conection.executeQuery(queryToExecute);
+        List<List<String>> result = Conection.executeQuery(queryToExecute);
+        List<DTO> brands = new LinkedList<>();
+        List<String> columnNames = result.remove(0);
+        for (List<String> list: result) {
+            BrandDTO brand = new BrandDTO(columnNames, list);
+            brands.add(brand);
+        }
+        return brands;
     }
 
     @Override

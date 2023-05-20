@@ -1,12 +1,12 @@
 package cu.edu.cujae.structbd.services;
 
+import cu.edu.cujae.structbd.dto.BrandDTO;
+import cu.edu.cujae.structbd.dto.DTO;
 import cu.edu.cujae.structbd.utils.Conection;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class BrandServices implements Service{
     @Override
@@ -46,8 +46,15 @@ public class BrandServices implements Service{
         connection.close();
     }
 
-    public List<List<String>> getAll() {
+    public List<DTO> getAll() {
         String queryToExecute = "SELECT * FROM brand";
-        return Conection.executeQuery(queryToExecute);
+        List<List<String>> result = Conection.executeQuery(queryToExecute);
+        List<DTO> brands = new LinkedList<>();
+        List<String> columnNames = result.remove(0);
+        for (List<String> list: result) {
+            BrandDTO brand = new BrandDTO(columnNames, list);
+            brands.add(brand);
+        }
+        return brands;
     }
 }
