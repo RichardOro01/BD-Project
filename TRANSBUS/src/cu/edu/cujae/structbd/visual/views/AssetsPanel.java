@@ -1,6 +1,7 @@
 package cu.edu.cujae.structbd.visual.views;
 import cu.edu.cujae.structbd.dto.BrandDTO;
 import cu.edu.cujae.structbd.dto.DTO;
+import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.utils.DTOUtils;
 import cu.edu.cujae.structbd.visual.App;
@@ -58,31 +59,14 @@ public class AssetsPanel extends JPanel {
         return tabbedPane;
     }
 
-    public PButton getInsertButton() {
-        if (insertButton == null) {
-            insertButton = new PButton("Insert");
-            insertButton.setBounds(getTabbedPane().getX(), getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
-            insertButton.addActionListener(e -> {
-                switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
-                    case "Brands":
-                        ManagerInput.showBrandInput();
-                        break;
-                    case "Cars":
-                        ManagerInput.showCarInput();
-                }
-            });
-        }
-        return insertButton;
-    }
-
     public void refresh(Table table){
         System.out.println("table " + table);
         switch (table){
             case Brands -> {
                 System.out.println("actualizando " + table);
-                List<DTO> dataDTO = ServicesLocator.getBrandServices().getAll();
+                ServicesLocator.getBrandServices().refresh();
+                List<DTO> dataDTO = new LinkedList<>(DTOLocator.getBrandDTOList());
                 List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_type", "spending"));
-                System.out.println(  data);
                 tableBrands.setTableData(data);
             }
             case Couples -> {}
@@ -98,6 +82,22 @@ public class AssetsPanel extends JPanel {
             case Free_Covers -> {}
             case Discrepancies -> {}
         }
+    }
+    public PButton getInsertButton() {
+        if (insertButton == null) {
+            insertButton = new PButton("Insert");
+            insertButton.setBounds(getTabbedPane().getX(), getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
+            insertButton.addActionListener(e -> {
+                switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
+                    case "Brands":
+                        ManagerInput.showBrandInput();
+                        break;
+                    case "Cars":
+                        ManagerInput.showCarInput();
+                }
+            });
+        }
+        return insertButton;
     }
 
     public PButton getDeleteButton() {
