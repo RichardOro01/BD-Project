@@ -46,6 +46,7 @@ public class BrandServices implements Service{
         connection.close();
     }
 
+    @Override
     public List<DTO> getAll() {
         String queryToExecute = "SELECT * FROM brand";
         List<List<String>> result = Conection.executeQuery(queryToExecute);

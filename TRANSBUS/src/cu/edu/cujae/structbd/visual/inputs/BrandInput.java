@@ -6,7 +6,6 @@ import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.views.Table;
 
 import javax.swing.*;
-import java.sql.SQLException;
 
 public class BrandInput extends JFrame {
     private Mode mode;
@@ -105,7 +104,7 @@ public class BrandInput extends JFrame {
                     } else {
                         ServicesLocator.getBrandServices().update(oldBrandName, brandName, amoSeats, fuelType, spending);
                     }
-                    App.getInstance().getTablesPanel().refresh(Table.Brands);
+                    App.getInstance().getAssetsPanel().refresh(Table.Brands);
                 } catch (Exception ex) {
                     App.getInstance().handleError(ex);
                 }

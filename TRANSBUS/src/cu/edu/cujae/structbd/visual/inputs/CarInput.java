@@ -93,7 +93,7 @@ public class CarInput extends JFrame {
                     } else {
                         ServicesLocator.getCarServices().update(number, plate, couple, brandName);
                     }
-                    App.getInstance().getTablesPanel().refresh(Table.Cars);
+                    App.getInstance().getAssetsPanel().refresh(Table.Cars);
                 } catch (Exception ex) {
                     App.getInstance().handleError(ex);
                 }
