@@ -16,7 +16,7 @@ public class BrandServices implements Service{
         CallableStatement call = connection.prepareCall("{ call insert_brand(?, ?, ?, ?) }");
         call.setString(1, (String) args[0]);
         call.setInt(2, (int) args[1]);
-        call.setString(3, (String) args[2]);
+        call.setInt(3, (int) args[2]);
         call.setDouble(4,(double) args[3]);
         call.execute();
         call.close();
@@ -27,10 +27,10 @@ public class BrandServices implements Service{
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         call = connection.prepareCall("{ call update_brand(?, ?, ?, ?, ?) }");
-        call.setString(1, (String) args[0]);
+        call.setInt(1, (int) args[0]);
         call.setString(2, (String) args[1]);
         call.setInt(3, (int) args[2]);
-        call.setString(4, (String) args[3]);
+        call.setInt(4, (int) args[3]);
         call.setDouble(5, (double) args[4]);
         call.execute();
         call.close();
@@ -41,7 +41,7 @@ public class BrandServices implements Service{
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         call = connection.prepareCall("{ call delete_brand(?) }");
-        call.setString(1, (String) args[0]);
+        call.setInt(1, (int) args[0]);
         call.execute();
         call.close();
         connection.close();

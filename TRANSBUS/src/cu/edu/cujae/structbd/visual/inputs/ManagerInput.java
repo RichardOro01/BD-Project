@@ -1,5 +1,7 @@
 package cu.edu.cujae.structbd.visual.inputs;
 
+import cu.edu.cujae.structbd.dto.BrandDTO;
+
 public class ManagerInput {
     private static BrandInput brandInput = null;
     private static CarInput carInput = null;
@@ -9,9 +11,9 @@ public class ManagerInput {
             brandInput = new BrandInput();
         }
     }
-    public static void showBrandInput(String brandName, String amoSeats, String fuelType, String spending) {
+    public static void showBrandInput(BrandDTO brandDTO) {
         if (brandInput==null || !brandInput.isVisible()) {
-            brandInput = new BrandInput(brandName, amoSeats, fuelType, spending);
+            brandInput = new BrandInput(brandDTO);
         }
     }
 

@@ -116,8 +116,8 @@ public class AssetsPanel extends JPanel {
                         case "Brands" -> {
                             index = getTableBrands().getTable().getSelectedRow();
                             if (index >= 0) {
-                                String brandName = (String) getTableBrands().getTable().getValueAt(index, 0);
-                                ServicesLocator.getBrandServices().delete(brandName);
+                                int brandCode = DTOLocator.getBrandDTOList().get(index).getBrandCode();
+                                ServicesLocator.getBrandServices().delete(brandCode);
                                 refresh(Table.Brands);
                             }
                         }
@@ -147,11 +147,8 @@ public class AssetsPanel extends JPanel {
                     case "Brands":
                         int index = getTableBrands().getTable().getSelectedRow();
                         if (index >= 0) {
-                            String brandName = (String) getTableBrands().getTable().getValueAt(index, 0);
-                            String amoSeats = (String) getTableBrands().getTable().getValueAt(index, 1);
-                            String fuelType = (String) getTableBrands().getTable().getValueAt(index, 2);
-                            String spending = (String) getTableBrands().getTable().getValueAt(index, 3);
-                            ManagerInput.showBrandInput(brandName, amoSeats, fuelType, spending);
+                            BrandDTO brandDTO = DTOLocator.getBrandDTOList().get(index);
+                            ManagerInput.showBrandInput(brandDTO);
                         }
                         break;
                 }
