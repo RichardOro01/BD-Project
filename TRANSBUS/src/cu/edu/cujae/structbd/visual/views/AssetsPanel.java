@@ -1,7 +1,9 @@
 package cu.edu.cujae.structbd.visual.views;
 import cu.edu.cujae.structbd.dto.BrandDTO;
 import cu.edu.cujae.structbd.dto.DTO;
+import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.services.ServicesLocator;
+import cu.edu.cujae.structbd.utils.DTOUtils;
 import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
@@ -40,7 +42,6 @@ public class AssetsPanel extends JPanel {
     private JTabbedPane getTabbedPane() {
         if (tabbedPane == null) {
             tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-            System.out.println(Definitions.APP_WIDTH-Definitions.SIDE_BAR_WIDTH-Definitions.MARGING-20);
             int y = 60;
             tabbedPane.setBounds(20, y, Definitions.APP_WIDTH-Definitions.SIDE_BAR_WIDTH-Definitions.MARGING-60, Definitions.APP_HEIGHT-y-150);
             tabbedPane.addTab("Brands", null, getTableBrands(), null);
@@ -58,6 +59,30 @@ public class AssetsPanel extends JPanel {
         return tabbedPane;
     }
 
+    public void refresh(Table table){
+        System.out.println("table " + table);
+        switch (table){
+            case Brands -> {
+                System.out.println("actualizando " + table);
+                ServicesLocator.getBrandServices().refresh();
+                List<DTO> dataDTO = new LinkedList<>(DTOLocator.getBrandDTOList());
+                List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_type", "spending"));
+                tableBrands.setTableData(data);
+            }
+            case Couples -> {}
+            case Drivers -> {}
+            case Cars -> {
+                //tableCars.setTableData(ServicesLocator.getCarServices().getAll());
+            }
+            case Reports -> {}
+            case District -> {}
+            case Roadmaps -> {}
+            case Services -> {}
+            case Contracts -> {}
+            case Free_Covers -> {}
+            case Discrepancies -> {}
+        }
+    }
     public PButton getInsertButton() {
         if (insertButton == null) {
             insertButton = new PButton("Insert");
@@ -73,26 +98,6 @@ public class AssetsPanel extends JPanel {
             });
         }
         return insertButton;
-    }
-
-    public void refresh(Table table){
-        switch (table){
-            case Brands -> {
-                //tableBrands.setTableData(ServicesLocator.getBrandServices().getAll());
-            }
-            case Couples -> {}
-            case Drivers -> {}
-            case Cars -> {
-                //tableCars.setTableData(ServicesLocator.getCarServices().getAll());
-            }
-            case Reports -> {}
-            case District -> {}
-            case Roadmaps -> {}
-            case Services -> {}
-            case Contracts -> {}
-            case Free_Covers -> {}
-            case Discrepancies -> {}
-        }
     }
 
     public PButton getDeleteButton() {
@@ -154,12 +159,7 @@ public class AssetsPanel extends JPanel {
         if (tableBrands == null) {
             String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
             tableBrands = new TableScroll(columns);
-            List<DTO> dataDTO = ServicesLocator.getBrandServices().getAll();
-            List<List<String>> data = new LinkedList<>();
-            for (DTO brand: dataDTO) {
-                data.add(((BrandDTO)brand).getData(List.of("brand_name", "amo_seats", "fuel_type", "spending")));
-            }
-            tableBrands.setTableData(data);
+            refresh(Table.Brands);
         }
         return tableBrands;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CarServices implements Service {
     @Override
-    public List<DTO> getAll() {
+    public void refresh() {
         String queryToExecute = "SELECT * FROM car";
         List<List<String>> result = Conection.executeQuery(queryToExecute);
         List<DTO> brands = new LinkedList<>();
@@ -20,7 +20,6 @@ public class CarServices implements Service {
             BrandDTO brand = new BrandDTO(columnNames, list);
             brands.add(brand);
         }
-        return brands;
     }
 
     @Override

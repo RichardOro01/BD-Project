@@ -66,11 +66,11 @@ public class BrandDTO implements DTO{
 
     public boolean setData(String column, String payload) {
         switch (column) {
-            case "brand_code" -> {brandCode=Integer.parseInt(payload);}
-            case "brand_name" -> {brandName=payload;}
-            case "amo_seats" -> {amoSeats=Integer.parseInt(payload);}
-            case "fuel_type" -> {fuelType=payload;}
-            case "spending" -> {spending=Double.parseDouble(payload);}
+            case "brand_code" -> brandCode=Integer.parseInt(payload);
+            case "brand_name" -> brandName=payload;
+            case "amo_seats" -> amoSeats=Integer.parseInt(payload);
+            case "fuel_type" -> fuelType=payload;
+            case "spending" -> spending=Double.parseDouble(payload);
             default -> {return false;}
         }
         return true;
@@ -80,12 +80,12 @@ public class BrandDTO implements DTO{
         List<String> result = new LinkedList<>();
         for (String column: columns) {
             switch (column) {
-                case "brand_code" -> {result.add(String.valueOf(brandCode));}
-                case "brand_name" -> {result.add(brandName);}
-                case "amo_seats" -> {result.add(String.valueOf(amoSeats));}
-                case "fuel_type" -> {result.add(fuelType);}
-                case "spending" -> {result.add(String.valueOf(spending));}
-                default -> {}
+                case "brand_code" -> result.add(String.valueOf(brandCode));
+                case "brand_name" -> result.add(brandName);
+                case "amo_seats" -> result.add(String.valueOf(amoSeats));
+                case "fuel_type" -> result.add(fuelType);
+                case "spending" -> result.add(String.valueOf(spending));
+                default -> throw new RuntimeException("Column not found");
             }
         }
 

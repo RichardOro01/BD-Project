@@ -16,7 +16,7 @@ public class App extends JFrame {
     private JPanel bodyPanel;
     private BarOptions options;
     private int height;
-    private AssetsPanel tablesPanel;
+    private AssetsPanel assetsPanel;
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
@@ -80,16 +80,16 @@ public class App extends JFrame {
             options.addOption(new BarOption("Home"), new HomePanel(), true);
             BarOption management = options.addParentOption(new BarOption("Management"));
             options.addSubOption(new BarOption("Services"), new ServicesPanel(), management);
-            options.addSubOption(new BarOption("Assets"), new AssetsPanel(), management);
+            options.addSubOption(new BarOption("Assets"), getAssetsPanel(), management);
         }
         return options;
     }
 
-    public AssetsPanel getTablesPanel(){
-        if (tablesPanel == null) {
-            tablesPanel = new AssetsPanel();
+    public AssetsPanel getAssetsPanel(){
+        if (assetsPanel == null) {
+            assetsPanel = new AssetsPanel();
         }
-        return tablesPanel;
+        return assetsPanel;
     }
 
 }
