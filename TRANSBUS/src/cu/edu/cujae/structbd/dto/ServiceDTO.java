@@ -5,19 +5,19 @@ public class ServiceDTO {
     private String serviceName;
     private String requestNumber;
     private String tourGroupCode;
-    private String country;
+    private int countryCode;
     private String pickupPlace;
     private String pickupTime;
     private int pax;
     private double serviceKms;
     private double amount;
 
-    public ServiceDTO(int serviceCode, String serviceName, String requestNumber, String tourGroupCode, String country, String pickupPlace, String pickupTime, int pax, double serviceKms, double amount) {
+    public ServiceDTO(int serviceCode, String serviceName, String requestNumber, String tourGroupCode, int countryCode, String pickupPlace, String pickupTime, int pax, double serviceKms, double amount) {
         this.serviceCode = serviceCode;
         this.serviceName = serviceName;
         this.requestNumber = requestNumber;
         this.tourGroupCode = tourGroupCode;
-        this.country = country;
+        this.countryCode = countryCode;
         this.pickupPlace = pickupPlace;
         this.pickupTime = pickupTime;
         this.pax = pax;
@@ -53,12 +53,12 @@ public class ServiceDTO {
         this.tourGroupCode = tourGroupCode;
     }
 
-    public String getCountry() {
-        return country;
+    public int getCountryCode() {
+        return countryCode;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountryCode(int countryCode) {
+        this.countryCode = countryCode;
     }
 
     public String getPickupPlace() {

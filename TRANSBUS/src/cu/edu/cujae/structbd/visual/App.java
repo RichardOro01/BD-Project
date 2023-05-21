@@ -21,6 +21,8 @@ public class App extends JFrame {
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
             App frame = App.getInstance();
+            App.getInstance().init();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
     }
@@ -31,9 +33,10 @@ public class App extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(getOwner());
-
         height=Definitions.APP_HEIGHT-39;
+    }
 
+    public void init(){
         JPanel panel = new JPanel();
         panel.setLayout(null);
         setContentPane(panel);

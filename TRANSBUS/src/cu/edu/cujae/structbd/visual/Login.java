@@ -93,9 +93,7 @@ public class Login extends JFrame {
 		try {
 			ServicesLocator.getConnection();
 			JOptionPane.showInternalMessageDialog(contentPane,"Autentificación exitosa.","Acceso",JOptionPane.INFORMATION_MESSAGE);
-			App p_window = App.getInstance();
-			p_window.setVisible(true);
-			p_window.setLocationRelativeTo(null);
+			App.main(null);
 			dispose();
 		} catch (Exception e) {
 			JOptionPane.showInternalMessageDialog(contentPane,"Usuario o contraseña incorrecta.", "Error", JOptionPane.ERROR_MESSAGE);

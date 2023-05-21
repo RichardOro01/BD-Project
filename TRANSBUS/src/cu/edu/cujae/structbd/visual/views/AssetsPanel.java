@@ -60,28 +60,33 @@ public class AssetsPanel extends JPanel {
     }
 
     public void refresh(Table table){
-        System.out.println("table " + table);
-        switch (table){
-            case Brands -> {
-                System.out.println("actualizando " + table);
-                ServicesLocator.getBrandServices().refresh();
-                List<DTO> dataDTO = new LinkedList<>(DTOLocator.getBrandDTOList());
-                List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_type", "spending"));
-                tableBrands.setTableData(data);
+        try {
+            System.out.println("table " + table);
+            switch (table){
+                case Brands -> {
+                    System.out.println("actualizando " + table);
+                    ServicesLocator.getBrandServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getBrandDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_code", "spending"));
+                    tableBrands.setTableData(data);
+                }
+                case Couples -> {}
+                case Drivers -> {}
+                case Cars -> {
+                    //tableCars.setTableData(ServicesLocator.getCarServices().getAll());
+                }
+                case Reports -> {}
+                case District -> {}
+                case Roadmaps -> {}
+                case Services -> {}
+                case Contracts -> {}
+                case Free_Covers -> {}
+                case Discrepancies -> {}
             }
-            case Couples -> {}
-            case Drivers -> {}
-            case Cars -> {
-                //tableCars.setTableData(ServicesLocator.getCarServices().getAll());
-            }
-            case Reports -> {}
-            case District -> {}
-            case Roadmaps -> {}
-            case Services -> {}
-            case Contracts -> {}
-            case Free_Covers -> {}
-            case Discrepancies -> {}
+        } catch (Exception e) {
+            App.getInstance().handleError(e);
         }
+
     }
     public PButton getInsertButton() {
         if (insertButton == null) {

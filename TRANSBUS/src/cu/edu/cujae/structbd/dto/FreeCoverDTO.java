@@ -1,27 +1,27 @@
 package cu.edu.cujae.structbd.dto;
 
 public class FreeCoverDTO {
-    private String idDriver;
-    private String brandName;
+    private int driverCode;
+    private int brandCode;
 
-    public FreeCoverDTO(String idDriver, String brandName) {
-        this.idDriver = idDriver;
-        this.brandName = brandName;
+    public FreeCoverDTO(int driverCode, int brandName) {
+        this.driverCode = driverCode;
+        this.brandCode = brandName;
     }
 
-    public String getIdDriver() {
-        return idDriver;
+    public int getDriverCode() {
+        return driverCode;
     }
 
-    public void setIdDriver(String idDriver) {
-        this.idDriver = idDriver;
+    public void setDriverCode(int driverCode) {
+        this.driverCode = driverCode;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public int getBrandCode() {
+        return brandCode;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setBrandCode(int brandCode) {
+        this.brandCode = brandCode;
     }
 }

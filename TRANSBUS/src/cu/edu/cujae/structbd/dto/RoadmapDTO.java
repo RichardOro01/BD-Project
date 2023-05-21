@@ -2,13 +2,13 @@ package cu.edu.cujae.structbd.dto;
 
 public class RoadmapDTO {
     private String roadmapDate;
-    private int fleetNumber;
+    private int carCode;
     private double kms;
     private String departureTime;
 
-    public RoadmapDTO(String roadmapDate, int fleetNumber, double kms, String departureTime) {
+    public RoadmapDTO(String roadmapDate, int carCode, double kms, String departureTime) {
         this.roadmapDate = roadmapDate;
-        this.fleetNumber = fleetNumber;
+        this.carCode = carCode;
         this.kms = kms;
         this.departureTime = departureTime;
     }
@@ -17,8 +17,8 @@ public class RoadmapDTO {
         return roadmapDate;
     }
 
-    public int getFleetNumber() {
-        return fleetNumber;
+    public int getCarCode() {
+        return carCode;
     }
 
     public double getKms() {

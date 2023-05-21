@@ -1,17 +1,17 @@
 package cu.edu.cujae.structbd.dto;
 
 public class CarDTO {
-    private int carCode;
+    private final int carCode;
     private int fleetNumber;
     private String plate;
-    private String brandName;
+    private int brandCode;
     private int coupleCode;
 
-    public CarDTO(int carCode, int fleetNumber, String plate, String brandName, int coupleCode) {
+    public CarDTO(int carCode, int fleetNumber, String plate, int brandCode, int coupleCode) {
         this.carCode = carCode;
         this.fleetNumber = fleetNumber;
         this.plate = plate;
-        this.brandName = brandName;
+        this.brandCode = brandCode;
         this.coupleCode = coupleCode;
     }
 
@@ -35,12 +35,12 @@ public class CarDTO {
         this.plate = plate;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public int getBrandCode() {
+        return brandCode;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setBrandCode(int brandCode) {
+        this.brandCode = brandCode;
     }
 
     public int getCoupleCode() {

@@ -1,16 +1,16 @@
 package cu.edu.cujae.structbd.dto;
 
 public class ContractDTO {
-    private int contractCode;
+    private final int contractCode;
     private String applicantName;
     private String startDate;
     private String endDate;
     private double contractkms;
     private double contractAmount;
     private String contractCountry;
-    private int fleetNumber;
+    private int carCode;
 
-    public ContractDTO(int contractCode, String applicantName, String startDate, String endDate, double contractkms, double contractAmount, String contractCountry, int fleetNumber) {
+    public ContractDTO(int contractCode, String applicantName, String startDate, String endDate, double contractkms, double contractAmount, String contractCountry, int carCode) {
         this.contractCode = contractCode;
         this.applicantName = applicantName;
         this.startDate = startDate;
@@ -18,7 +18,7 @@ public class ContractDTO {
         this.contractkms = contractkms;
         this.contractAmount = contractAmount;
         this.contractCountry = contractCountry;
-        this.fleetNumber = fleetNumber;
+        this.carCode = carCode;
     }
 
     public int getContractCode() {
@@ -73,11 +73,11 @@ public class ContractDTO {
         this.contractCountry = contractCountry;
     }
 
-    public int getFleetNumber() {
-        return fleetNumber;
+    public int getCarCode() {
+        return carCode;
     }
 
-    public void setFleetNumber(int fleetNumber) {
-        this.fleetNumber = fleetNumber;
+    public void setCarCode(int carCode) {
+        this.carCode = carCode;
     }
 }

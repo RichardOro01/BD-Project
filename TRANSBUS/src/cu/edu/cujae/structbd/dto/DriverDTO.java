@@ -1,7 +1,7 @@
 package cu.edu.cujae.structbd.dto;
 
 public class DriverDTO {
-    private int driverCode;
+    private final int driverCode;
     private String idDriver;
     private String driverId;
     private String address;

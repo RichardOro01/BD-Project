@@ -1,20 +1,20 @@
 package cu.edu.cujae.structbd.dto;
 
 public class DiscrepancyDTO {
-    private String monthCode;
-    private int fleetNumber;
+    private final String monthCode;
+    private final int carCode;
     private double plannedKms;
-    private double ToursKms;
+    private double toursKms;
     private double differenceKms;
     private double plannedFuel;
     private double consumedFuel;
     private double difSpendingFuel;
 
-    public DiscrepancyDTO(String monthCode, int fleetNumber, double plannedKms, double toursKms, double differenceKms, double plannedFuel, double consumedFuel, double difSpendingFuel) {
+    public DiscrepancyDTO(String monthCode, int carCode, double plannedKms, double toursKms, double differenceKms, double plannedFuel, double consumedFuel, double difSpendingFuel) {
         this.monthCode = monthCode;
-        this.fleetNumber = fleetNumber;
+        this.carCode = carCode;
         this.plannedKms = plannedKms;
-        ToursKms = toursKms;
+        this.toursKms = toursKms;
         this.differenceKms = differenceKms;
         this.plannedFuel = plannedFuel;
         this.consumedFuel = consumedFuel;
@@ -25,8 +25,8 @@ public class DiscrepancyDTO {
         return monthCode;
     }
 
-    public int getFleetNumber() {
-        return fleetNumber;
+    public int getCarCode() {
+        return carCode;
     }
 
     public double getPlannedKms() {
@@ -38,11 +38,11 @@ public class DiscrepancyDTO {
     }
 
     public double getToursKms() {
-        return ToursKms;
+        return toursKms;
     }
 
     public void setToursKms(double toursKms) {
-        ToursKms = toursKms;
+        this.toursKms = toursKms;
     }
 
     public double getDifferenceKms() {

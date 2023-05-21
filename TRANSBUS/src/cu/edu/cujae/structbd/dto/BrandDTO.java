@@ -6,14 +6,14 @@ import java.util.List;
 public class BrandDTO implements DTO{
     private String brandName;
     private int amoSeats;
-    private String fuelType;
+    private int fuelCode;
     private double spending;
     private int brandCode;
 
-    public BrandDTO(int brandCode, String brandName, int amoSeats, String fuelType, double spending) {
+    public BrandDTO(int brandCode, String brandName, int amoSeats, int fuelCode, double spending) {
         this.brandName = brandName;
         this.amoSeats = amoSeats;
-        this.fuelType = fuelType;
+        this.fuelCode = fuelCode;
         this.spending = spending;
         this.brandCode = brandCode;
     }
@@ -44,12 +44,12 @@ public class BrandDTO implements DTO{
         this.amoSeats = amoSeats;
     }
 
-    public String getFuelType() {
-        return fuelType;
+    public int getFuelCode() {
+        return fuelCode;
     }
 
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
+    public void setFuelCode(int fuelCode) {
+        this.fuelCode = fuelCode;
     }
 
     public double getSpending() {
@@ -69,7 +69,7 @@ public class BrandDTO implements DTO{
             case "brand_code" -> brandCode=Integer.parseInt(payload);
             case "brand_name" -> brandName=payload;
             case "amo_seats" -> amoSeats=Integer.parseInt(payload);
-            case "fuel_type" -> fuelType=payload;
+            case "fuel_code" -> fuelCode =Integer.parseInt(payload);
             case "spending" -> spending=Double.parseDouble(payload);
             default -> {return false;}
         }
@@ -83,7 +83,7 @@ public class BrandDTO implements DTO{
                 case "brand_code" -> result.add(String.valueOf(brandCode));
                 case "brand_name" -> result.add(brandName);
                 case "amo_seats" -> result.add(String.valueOf(amoSeats));
-                case "fuel_type" -> result.add(fuelType);
+                case "fuel_code" -> result.add(String.valueOf(fuelCode));
                 case "spending" -> result.add(String.valueOf(spending));
                 default -> throw new RuntimeException("Column not found");
             }
