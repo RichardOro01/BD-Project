@@ -4,6 +4,7 @@ import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.dto.FuelDTO;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
+import cu.edu.cujae.structbd.visual.components.input.Form;
 import cu.edu.cujae.structbd.visual.components.input.InputSelect;
 import cu.edu.cujae.structbd.visual.components.input.InputText;
 import cu.edu.cujae.structbd.visual.components.PButton;
@@ -15,6 +16,7 @@ import java.awt.*;
 
 public class BrandInput extends BaseInput {
     private Mode mode;
+    private Form form;
     private BrandDTO brandDTO;
     private InputText brandName;
     private InputText amoSeats;
@@ -22,13 +24,13 @@ public class BrandInput extends BaseInput {
     private InputText spending;
     private PButton submitButton;
 
-    public static void main(String[] args){
-        EventQueue.invokeLater(() -> {
-            BrandInput frame = new BrandInput();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        });
-    }
+//    public static void main(String[] args){
+//        EventQueue.invokeLater(() -> {
+//            BrandInput frame = new BrandInput();
+//            frame.setLocationRelativeTo(null);
+//            frame.setVisible(true);
+//        });
+//    }
 
     public BrandInput(BrandDTO brandDTO) {
         this.mode = Mode.Update;
@@ -47,24 +49,29 @@ public class BrandInput extends BaseInput {
     }
 
     private void initWindow() {
-        JPanel form = new JPanel(new GridLayout(2, 2, 30, 10));
+        form = new Form(2, 2);
+        form.setContainer(this);
         form.setPreferredSize(new Dimension(500,100));
-        form.add(getBrandName());
-        form.add(getAmoSeats());
-        form.add(getSpending());
-        form.add(getFuelType());
+        form.addFormItem(getBrandName());
+        form.addFormItem(getAmoSeats());
+        form.addFormItem(getSpending());
+        form.addFormItem(getFuelType());
+        getBrandName().setForm(form);
+        getAmoSeats().setForm(form);
+        getSpending().setForm(form);
+        getFuelType().setForm(form);
         init(form, getSubmitButton());
     }
 
     public InputText getBrandName() {
         if (brandName == null) {
-            brandName = new InputText(0, 0, "Brand name:");
+            brandName = new InputText("Brand name:");
         }
         return brandName;
     }
     public InputText getAmoSeats() {
         if (amoSeats == null) {
-            amoSeats = new InputText(220, 20, "Seats amount:");
+            amoSeats = new InputText("Seats amount:");
         }
         return amoSeats;
     }

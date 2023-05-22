@@ -14,7 +14,9 @@ public class PButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                setBackground(Color.GRAY);
+                if (isEnabled()) {
+                    setBackground(Color.GRAY);
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {

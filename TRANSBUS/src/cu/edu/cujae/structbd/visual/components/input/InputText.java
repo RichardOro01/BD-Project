@@ -1,10 +1,13 @@
 package cu.edu.cujae.structbd.visual.components.input;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 
-public class InputText extends JPanel {
-    private TextField textField;
+public class InputText extends JPanel implements FormItem {
+    private Form form;
+    private JTextField textField;
     private Label label;
 
     public InputText(int x, int y, String label) {
@@ -14,9 +17,13 @@ public class InputText extends JPanel {
         add(getTextField());
     }
 
-    public TextField getTextField() {
+    public InputText(String label) {
+        this(0, 0, label);
+    }
+
+    public JTextField getTextField() {
         if (textField == null) {
-            textField = new TextField();
+            textField = new JTextField();
         }
         return textField;
     }
@@ -29,4 +36,33 @@ public class InputText extends JPanel {
         return label;
     }
 
+    @Override
+    public String getValue() {
+        return getTextField().getText();
+    }
+
+    @Override
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                getForm().update();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                getForm().update();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                getForm().update();
+            }
+        });
+    }
 }
