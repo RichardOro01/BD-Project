@@ -48,6 +48,8 @@ public class InputFormattedText extends JPanel implements FormItem{
 
     @Override
     public String getValue() {
+        if (getTextField().getText().contains(" "))
+            return "";
         return getTextField().getText();
     }
 

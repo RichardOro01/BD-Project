@@ -4,11 +4,8 @@ import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.dto.FuelDTO;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
-import cu.edu.cujae.structbd.visual.components.input.Form;
-import cu.edu.cujae.structbd.visual.components.input.InputSelect;
-import cu.edu.cujae.structbd.visual.components.input.InputText;
+import cu.edu.cujae.structbd.visual.components.input.*;
 import cu.edu.cujae.structbd.visual.components.PButton;
-import cu.edu.cujae.structbd.visual.components.input.Option;
 import cu.edu.cujae.structbd.visual.views.Table;
 
 import javax.swing.*;
