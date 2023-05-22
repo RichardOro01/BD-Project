@@ -6,14 +6,12 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.MaskFormatter;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 public class InputNumber extends InputText{
+    private boolean isDecimal;
+    private int min;
+    private int max;
 
     public InputNumber(int x, int y, String label) {
         super(x, y, label);
@@ -24,11 +22,25 @@ public class InputNumber extends InputText{
                 try {
                     insertedText = e.getDocument().getText(e.getOffset(), e.getLength());
                     if (!Numbers.isNumber(insertedText)) {
+                        String finalInsertedText = insertedText;
                         SwingUtilities.invokeLater(() -> {
-                            try {
-                                e.getDocument().remove(e.getOffset(), e.getLength());
-                            } catch (BadLocationException ex) {
-                                ex.printStackTrace();
+                            boolean consume = false;
+                            if (isDecimal) {
+                                if (!finalInsertedText.contains(".")) {
+                                    consume = true;
+                                }
+                            } else {
+                                consume = true;
+                            }
+                            if (consume) {
+                                try {
+                                    e.getDocument().remove(e.getOffset(), e.getLength());
+                                } catch (BadLocationException ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            if (getValue().equals(".")) {
+                                setValue("0.");
                             }
                         });
                     }
@@ -52,7 +64,17 @@ public class InputNumber extends InputText{
             @Override
             public void keyTyped(KeyEvent e) {
                 if (!Numbers.isNumber(String.valueOf(e.getKeyChar()))){
-                    e.consume();
+                    if (isDecimal) {
+                        if (".".equals(String.valueOf(e.getKeyChar()))) {
+                            if (getValue().contains(".")) {
+                                e.consume();
+                            }
+                        } else {
+                            e.consume();
+                        }
+                    } else {
+                        e.consume();
+                    }
                 }
             }
         });
@@ -60,6 +82,30 @@ public class InputNumber extends InputText{
 
     public InputNumber(String label) {
         this(0,0,label);
+    }
+
+    public boolean isDecimal() {
+        return isDecimal;
+    }
+
+    public void setDecimal(boolean decimal) {
+        isDecimal = decimal;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
     }
 
 

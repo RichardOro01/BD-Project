@@ -30,7 +30,6 @@ public class BaseInput extends JDialog implements FormConatiner{
         submitButton.setPreferredSize(new Dimension(50,20));
         submitButton.setEnabled(false);
         footer.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.GRAY));
-        setVisible(true);
     }
 
     @Override

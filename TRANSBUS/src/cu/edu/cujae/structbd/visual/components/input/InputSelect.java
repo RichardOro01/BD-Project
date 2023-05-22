@@ -71,6 +71,11 @@ public class InputSelect extends JPanel implements FormItem {
     }
 
     @Override
+    public void setValue(String value) {
+        setSelectd(value);
+    }
+
+    @Override
     public Form getForm() {
         return form;
     }

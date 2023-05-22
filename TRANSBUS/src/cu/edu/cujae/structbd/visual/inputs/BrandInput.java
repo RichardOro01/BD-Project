@@ -33,16 +33,18 @@ public class BrandInput extends BaseInput {
         this.mode = Mode.Update;
         this.brandDTO = brandDTO;
         setTitle("Update brand");
+        initWindow();
         getBrandName().getTextField().setText(brandDTO.getBrandName());
         getAmoSeats().getTextField().setText(String.valueOf(brandDTO.getAmoSeats()));
         getSpending().getTextField().setText(String.valueOf(brandDTO.getSpending()));
         getFuelType().setSelectd(String.valueOf(brandDTO.getFuelType()));
-        initWindow();
+        setVisible(true);
     }
     public BrandInput() {
         this.mode = Mode.Insert;
         setTitle("Insert brand");
         initWindow();
+        setVisible(true);
     }
 
     private void initWindow() {
@@ -57,7 +59,9 @@ public class BrandInput extends BaseInput {
         getAmoSeats().setForm(form);
         getSpending().setForm(form);
         getFuelType().setForm(form);
+        getSpending().setDecimal(true);
         init(form, getSubmitButton());
+
     }
 
     public InputText getBrandName() {
