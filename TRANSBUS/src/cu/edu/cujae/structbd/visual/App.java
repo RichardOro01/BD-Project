@@ -1,5 +1,6 @@
 package cu.edu.cujae.structbd.visual;
 
+import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.components.BarOption;
 import cu.edu.cujae.structbd.visual.components.BarOptions;
 import cu.edu.cujae.structbd.visual.components.SidePanel;
@@ -37,6 +38,7 @@ public class App extends JFrame {
     }
 
     public void init(){
+        ServicesLocator.getReferenceTablesService().refresh();
         JPanel panel = new JPanel();
         panel.setLayout(null);
         setContentPane(panel);

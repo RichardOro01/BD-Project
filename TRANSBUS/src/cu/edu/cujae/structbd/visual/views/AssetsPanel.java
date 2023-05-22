@@ -68,7 +68,7 @@ public class AssetsPanel extends JPanel {
                     System.out.println("actualizando " + table);
                     ServicesLocator.getBrandServices().refresh();
                     List<DTO> dataDTO = new LinkedList<>(DTOLocator.getBrandDTOList());
-                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_code", "spending"));
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_name", "spending"));
                     tableBrands.setTableData(data);
                 }
                 case Couples -> {}

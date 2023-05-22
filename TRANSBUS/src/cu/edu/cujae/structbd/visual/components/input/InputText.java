@@ -1,4 +1,4 @@
-package cu.edu.cujae.structbd.visual.components;
+package cu.edu.cujae.structbd.visual.components.input;
 
 import javax.swing.*;
 import java.awt.*;

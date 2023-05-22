@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ServicesLocator {
+    private static ReferenceTablesService referenceTablesService = null;
     private static BrandServices brandServices = null;
     private static CarServices carServices = null;
     private static String username;
@@ -26,7 +27,12 @@ public class ServicesLocator {
     public static void setPassword(String password) {
         ServicesLocator.password = password;
     }
-
+    public static ReferenceTablesService getReferenceTablesService(){
+        if(referenceTablesService == null){
+            referenceTablesService = new ReferenceTablesService();
+        }
+        return referenceTablesService;
+    }
     public static BrandServices getBrandServices(){
         if(brandServices == null){
             brandServices = new BrandServices();

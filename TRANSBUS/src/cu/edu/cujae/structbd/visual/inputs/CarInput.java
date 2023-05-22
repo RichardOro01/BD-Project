@@ -1,7 +1,7 @@
 package cu.edu.cujae.structbd.visual.inputs;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
-import cu.edu.cujae.structbd.visual.components.InputText;
+import cu.edu.cujae.structbd.visual.components.input.InputText;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.views.Table;
 

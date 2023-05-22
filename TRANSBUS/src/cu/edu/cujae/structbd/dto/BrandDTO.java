@@ -6,14 +6,14 @@ import java.util.List;
 public class BrandDTO implements DTO{
     private String brandName;
     private int amoSeats;
-    private int fuelCode;
+    private String fuelType;
     private double spending;
     private int brandCode;
 
-    public BrandDTO(int brandCode, String brandName, int amoSeats, int fuelCode, double spending) {
+    public BrandDTO(int brandCode, String brandName, int amoSeats, String fuelType, double spending) {
         this.brandName = brandName;
         this.amoSeats = amoSeats;
-        this.fuelCode = fuelCode;
+        this.fuelType = fuelType;
         this.spending = spending;
         this.brandCode = brandCode;
     }
@@ -44,12 +44,12 @@ public class BrandDTO implements DTO{
         this.amoSeats = amoSeats;
     }
 
-    public int getFuelCode() {
-        return fuelCode;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setFuelCode(int fuelCode) {
-        this.fuelCode = fuelCode;
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 
     public double getSpending() {
@@ -64,16 +64,15 @@ public class BrandDTO implements DTO{
         return brandCode;
     }
 
-    public boolean setData(String column, String payload) {
+    public void setData(String column, String payload) {
         switch (column) {
             case "brand_code" -> brandCode=Integer.parseInt(payload);
             case "brand_name" -> brandName=payload;
             case "amo_seats" -> amoSeats=Integer.parseInt(payload);
-            case "fuel_code" -> fuelCode =Integer.parseInt(payload);
+            case "fuel_name" -> fuelType =payload;
             case "spending" -> spending=Double.parseDouble(payload);
-            default -> {return false;}
+            default -> throw new RuntimeException("Column " + column + " not found");
         }
-        return true;
     }
 
     public List<String> getData(List<String> columns) {
@@ -83,9 +82,9 @@ public class BrandDTO implements DTO{
                 case "brand_code" -> result.add(String.valueOf(brandCode));
                 case "brand_name" -> result.add(brandName);
                 case "amo_seats" -> result.add(String.valueOf(amoSeats));
-                case "fuel_code" -> result.add(String.valueOf(fuelCode));
+                case "fuel_name" -> result.add(String.valueOf(fuelType));
                 case "spending" -> result.add(String.valueOf(spending));
-                default -> throw new RuntimeException("Column not found");
+                default -> throw new RuntimeException("Column " + column + " not found");
             }
         }
 

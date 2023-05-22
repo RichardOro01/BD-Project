@@ -1,9 +1,13 @@
 package cu.edu.cujae.structbd.visual.inputs;
 import cu.edu.cujae.structbd.dto.BrandDTO;
+import cu.edu.cujae.structbd.dto.DTOLocator;
+import cu.edu.cujae.structbd.dto.FuelDTO;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
-import cu.edu.cujae.structbd.visual.components.InputText;
+import cu.edu.cujae.structbd.visual.components.input.InputSelect;
+import cu.edu.cujae.structbd.visual.components.input.InputText;
 import cu.edu.cujae.structbd.visual.components.PButton;
+import cu.edu.cujae.structbd.visual.components.input.Option;
 import cu.edu.cujae.structbd.visual.views.Table;
 
 import javax.swing.*;
@@ -14,7 +18,7 @@ public class BrandInput extends BaseInput {
     private BrandDTO brandDTO;
     private InputText brandName;
     private InputText amoSeats;
-    private InputText fuelType;
+    private InputSelect fuelType;
     private InputText spending;
     private PButton submitButton;
 
@@ -30,6 +34,10 @@ public class BrandInput extends BaseInput {
         this.mode = Mode.Update;
         this.brandDTO = brandDTO;
         setTitle("Update brand");
+        getBrandName().getTextField().setText(brandDTO.getBrandName());
+        getAmoSeats().getTextField().setText(String.valueOf(brandDTO.getAmoSeats()));
+        getSpending().getTextField().setText(String.valueOf(brandDTO.getSpending()));
+        getFuelType().setSelectd(String.valueOf(brandDTO.getFuelType()));
         initWindow();
     }
     public BrandInput() {
@@ -44,7 +52,6 @@ public class BrandInput extends BaseInput {
         form.add(getBrandName());
         form.add(getAmoSeats());
         form.add(getSpending());
-        form.add(getFuelType());
         form.add(getFuelType());
         init(form, getSubmitButton());
     }
@@ -61,9 +68,15 @@ public class BrandInput extends BaseInput {
         }
         return amoSeats;
     }
-    public InputText getFuelType() {
+    public InputSelect getFuelType() {
         if (fuelType == null) {
-            fuelType = new InputText(20, 70, "Fuel type:");
+            int size = DTOLocator.getFuelDTOList().size();
+            Option[] options = new Option[size];
+            for (int i=0; i<size; i++) {
+                FuelDTO fuelDTO = DTOLocator.getFuelDTOList().get(i);
+                options[i] = new Option(String.valueOf(fuelDTO.getFuelCode()), fuelDTO.getFuelName());
+            }
+            fuelType = new InputSelect(20, 70, "Fuel type:", options);
         }
         return fuelType;
     }
@@ -86,13 +99,14 @@ public class BrandInput extends BaseInput {
                 try {
                     String brandName = getBrandName().getTextField().getText();
                     int amoSeats = Integer.parseInt(getAmoSeats().getTextField().getText());
-                    int fuelType = Integer.parseInt(getFuelType().getTextField().getText());
+                    int fuelType = Integer.parseInt(getFuelType().getSelected());
                     double spending = Double.parseDouble(getSpending().getTextField().getText());
                     if (mode == Mode.Insert) {
                         ServicesLocator.getBrandServices().insert(brandName, amoSeats, fuelType, spending);
                     } else {
                         ServicesLocator.getBrandServices().update(brandDTO.getBrandCode(), brandName, amoSeats, fuelType, spending);
                     }
+                    dispose();
                     App.getInstance().getAssetsPanel().refresh(Table.Brands);
                 } catch (Exception ex) {
                     App.getInstance().handleError(ex);

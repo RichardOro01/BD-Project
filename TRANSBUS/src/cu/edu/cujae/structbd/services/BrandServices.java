@@ -49,7 +49,7 @@ public class BrandServices implements Service{
 
     @Override
     public void refresh() {
-        String queryToExecute = "SELECT * FROM brand";
+        String queryToExecute = "SELECT brand_code, brand_name, amo_seats, spending, fuel_name FROM brand JOIN fuel ON fuel.fuel_code = brand.fuel_code;";
         List<List<String>> result = Conection.executeQuery(queryToExecute);
         List<BrandDTO> brands = DTOLocator.getBrandDTOList();
         brands.clear();
