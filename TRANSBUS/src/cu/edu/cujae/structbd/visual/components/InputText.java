@@ -8,8 +8,8 @@ public class InputText extends JPanel {
     private Label label;
 
     public InputText(int x, int y, String label) {
-        setBounds(x, y, 200, 24);
-        setLayout(null);
+        setBounds(x, y, 200, 48);
+        setLayout(new GridLayout(2,1));
         add(getLabel(label));
         add(getTextField());
     }
@@ -17,8 +17,6 @@ public class InputText extends JPanel {
     public TextField getTextField() {
         if (textField == null) {
             textField = new TextField();
-            textField.setBounds(110, 0, 90, 24);
-            textField.setColumns(10);
         }
         return textField;
     }
@@ -26,8 +24,7 @@ public class InputText extends JPanel {
     public Label getLabel(String labelText) {
         if (label == null) {
             label = new Label(labelText);
-            label.setBounds(0, 0, 100, 24);
-            label.setAlignment(Label.RIGHT);
+            label.setAlignment(Label.LEFT);
         }
         return label;
     }

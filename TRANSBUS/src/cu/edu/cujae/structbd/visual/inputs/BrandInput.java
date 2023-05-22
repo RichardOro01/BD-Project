@@ -7,8 +7,9 @@ import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.views.Table;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class BrandInput extends JFrame {
+public class BrandInput extends BaseInput {
     private Mode mode;
     private BrandDTO brandDTO;
     private InputText brandName;
@@ -17,72 +18,58 @@ public class BrandInput extends JFrame {
     private InputText spending;
     private PButton submitButton;
 
+    public static void main(String[] args){
+        EventQueue.invokeLater(() -> {
+            BrandInput frame = new BrandInput();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
 
     public BrandInput(BrandDTO brandDTO) {
         this.mode = Mode.Update;
         this.brandDTO = brandDTO;
         setTitle("Update brand");
-        setBounds(0, 0, 600, 200);
-        getContentPane().setLayout(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(getOwner());
-        setVisible(true);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        setContentPane(panel);
-        panel.add(getBrandName(brandDTO.getBrandName()));
-        panel.add(getAmoSeats(String.valueOf(brandDTO.getAmoSeats())));
-        panel.add(getSpending(String.valueOf(brandDTO.getSpending())));
-        panel.add(getFuelType(String.valueOf(brandDTO.getFuelCode())));
-        panel.add(getSubmitButton());
+        initWindow();
     }
     public BrandInput() {
         this.mode = Mode.Insert;
         setTitle("Insert brand");
-        setBounds(0, 0, 600, 200);
-        getContentPane().setLayout(null);
-        setResizable(false);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(App.getInstance());
-        setVisible(true);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        setContentPane(panel);
-        panel.add(getBrandName(""));
-        panel.add(getAmoSeats(""));
-        panel.add(getSpending(""));
-        panel.add(getFuelType(""));
-        panel.add(getSubmitButton());
+        initWindow();
     }
 
-    public InputText getBrandName(String text) {
+    private void initWindow() {
+        JPanel form = new JPanel(new GridLayout(2, 2, 30, 10));
+        form.setPreferredSize(new Dimension(500,100));
+        form.add(getBrandName());
+        form.add(getAmoSeats());
+        form.add(getSpending());
+        form.add(getFuelType());
+        form.add(getFuelType());
+        init(form, getSubmitButton());
+    }
+
+    public InputText getBrandName() {
         if (brandName == null) {
-            brandName = new InputText(20, 20, "Brand name:");
-            brandName.getTextField().setText(text);
+            brandName = new InputText(0, 0, "Brand name:");
         }
         return brandName;
     }
-    public InputText getAmoSeats(String text) {
+    public InputText getAmoSeats() {
         if (amoSeats == null) {
             amoSeats = new InputText(220, 20, "Seats amount:");
-            amoSeats.getTextField().setText(text);
         }
         return amoSeats;
     }
-    public InputText getFuelType(String text) {
+    public InputText getFuelType() {
         if (fuelType == null) {
             fuelType = new InputText(20, 70, "Fuel type:");
-            fuelType.getTextField().setText(text);
         }
         return fuelType;
     }
-    public InputText getSpending(String text) {
+    public InputText getSpending() {
         if (spending == null) {
             spending = new InputText(220, 70, "Spending:");
-            spending.getTextField().setText(text);
         }
         return spending;
     }
@@ -95,11 +82,12 @@ public class BrandInput extends JFrame {
                 submitButton.setText("Update");
             }
             submitButton.addActionListener(e -> {
+
                 try {
-                    String brandName = getBrandName("").getTextField().getText();
-                    int amoSeats = Integer.parseInt(getAmoSeats("").getTextField().getText());
-                    int fuelType = Integer.parseInt(getFuelType("").getTextField().getText());
-                    double spending = Double.parseDouble(getSpending("").getTextField().getText());
+                    String brandName = getBrandName().getTextField().getText();
+                    int amoSeats = Integer.parseInt(getAmoSeats().getTextField().getText());
+                    int fuelType = Integer.parseInt(getFuelType().getTextField().getText());
+                    double spending = Double.parseDouble(getSpending().getTextField().getText());
                     if (mode == Mode.Insert) {
                         ServicesLocator.getBrandServices().insert(brandName, amoSeats, fuelType, spending);
                     } else {

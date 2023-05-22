@@ -8,9 +8,10 @@ import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
-import cu.edu.cujae.structbd.visual.inputs.ManagerInput;
+import cu.edu.cujae.structbd.visual.inputs.BrandInput;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -95,10 +96,16 @@ public class AssetsPanel extends JPanel {
             insertButton.addActionListener(e -> {
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
                     case "Brands":
-                        ManagerInput.showBrandInput();
+                        new BrandInput();
+//                        BrandInput input = new BrandInput();
+//                        EventQueue.invokeLater(() -> input.pack());
+//                        revalidate();
+//                        input.revalidate();
+//                        App.getInstance().repaint();
+//                        App.getInstance().revalidate();
                         break;
                     case "Cars":
-                        ManagerInput.showCarInput();
+                        //ManagerInput.showCarInput();
                 }
             });
         }
@@ -148,7 +155,7 @@ public class AssetsPanel extends JPanel {
                         int index = getTableBrands().getTable().getSelectedRow();
                         if (index >= 0) {
                             BrandDTO brandDTO = DTOLocator.getBrandDTOList().get(index);
-                            ManagerInput.showBrandInput(brandDTO);
+                            new BrandInput(brandDTO);
                         }
                         break;
                 }
