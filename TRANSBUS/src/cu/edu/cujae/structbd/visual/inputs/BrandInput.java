@@ -16,9 +16,9 @@ public class BrandInput extends BaseInput {
     private Form form;
     private BrandDTO brandDTO;
     private InputText brandName;
-    private InputText amoSeats;
+    private InputNumber amoSeats;
     private InputSelect fuelType;
-    private InputText spending;
+    private InputNumber spending;
     private PButton submitButton;
 
 //    public static void main(String[] args){
@@ -66,9 +66,9 @@ public class BrandInput extends BaseInput {
         }
         return brandName;
     }
-    public InputText getAmoSeats() {
+    public InputNumber getAmoSeats() {
         if (amoSeats == null) {
-            amoSeats = new InputText("Seats amount:");
+            amoSeats = new InputNumber("Seats amount:");
         }
         return amoSeats;
     }
@@ -80,13 +80,13 @@ public class BrandInput extends BaseInput {
                 FuelDTO fuelDTO = DTOLocator.getFuelDTOList().get(i);
                 options[i] = new Option(String.valueOf(fuelDTO.getFuelCode()), fuelDTO.getFuelName());
             }
-            fuelType = new InputSelect(20, 70, "Fuel type:", options);
+            fuelType = new InputSelect("Fuel type:", options);
         }
         return fuelType;
     }
-    public InputText getSpending() {
+    public InputNumber getSpending() {
         if (spending == null) {
-            spending = new InputText(220, 70, "Spending:");
+            spending = new InputNumber("Spending:");
         }
         return spending;
     }
