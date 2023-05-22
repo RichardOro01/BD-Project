@@ -1,6 +1,9 @@
 package cu.edu.cujae.structbd.dto;
 
-public class ReportDTO {
+import java.util.LinkedList;
+import java.util.List;
+
+public class ReportDTO implements DTO{
     private int reportCode;
     private int amoServices;
     private int amoRents;
@@ -17,6 +20,49 @@ public class ReportDTO {
         this.amoOthers = amoOthers;
         this.incomeOthers = incomeOthers;
         this.incomeTotal = incomeTotal;
+    }
+
+    public ReportDTO(List<String> columnNames, List<String> values) throws RuntimeException {
+        if (columnNames != null && values != null && columnNames.size() == values.size()) {
+            for (int i = 0; i < columnNames.size(); i++) {
+                setData(columnNames.get(i), values.get(i));
+            }
+        } else {
+            throw new RuntimeException("Data error");
+        }
+    }
+
+    @Override
+    public void setData(String column, String payload) {
+        switch (column) {
+            case "report_code" -> reportCode = Integer.parseInt((payload));
+            case "amo_services" -> amoServices = Integer.parseInt((payload));
+            case "amo_rents" -> amoRents = Integer.parseInt((payload));
+            case "income_rents" -> incomeRents = Double.parseDouble((payload));
+            case "amo_others" -> amoOthers = Integer.parseInt((payload));
+            case "income_others" -> incomeOthers = Double.parseDouble((payload));
+            case "income_total" -> incomeTotal = Double.parseDouble((payload));
+            default -> throw new RuntimeException("Column " + column + " not found");
+        }
+    }
+
+    @Override
+    public List<String> getData(List<String> columns) {
+
+        List<String> result = new LinkedList<>();
+        for (String column : columns) {
+            switch (column) {
+                case "report_code" -> result.add(String.valueOf(reportCode));
+                case "amo_services" -> result.add(String.valueOf(amoServices));
+                case "amo_rents" -> result.add(String.valueOf(amoRents));
+                case "income_rents" -> result.add(String.valueOf(incomeRents));
+                case "amo_others" -> result.add(String.valueOf(amoOthers));
+                case "income_others" -> result.add(String.valueOf(incomeOthers));
+                case "income_total" -> result.add(String.valueOf(incomeTotal));
+                default -> throw new RuntimeException("Column " + column + " not found");
+            }
+        }
+        return result;
     }
 
     public int getReportCode() {

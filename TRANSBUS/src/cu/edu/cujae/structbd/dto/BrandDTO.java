@@ -87,7 +87,6 @@ public class BrandDTO implements DTO{
                 default -> throw new RuntimeException("Column " + column + " not found");
             }
         }
-
         return result;
     }
 }
