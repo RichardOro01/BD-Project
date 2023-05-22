@@ -10,6 +10,8 @@ public class InputText extends JPanel implements FormItem {
     private JTextField textField;
     private Label label;
 
+    private int maxCharacters;
+
     public InputText(int x, int y, String label) {
         setBounds(x, y, 200, 48);
         setLayout(new GridLayout(2,1));
@@ -24,6 +26,22 @@ public class InputText extends JPanel implements FormItem {
     public JTextField getTextField() {
         if (textField == null) {
             textField = new JTextField();
+            textField.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    SwingUtilities.invokeLater(() -> {
+                        if (getValue().length() > maxCharacters) {
+                            setValue(getValue().substring(0, maxCharacters));
+                        }
+                    });
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {}
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {}
+            });
         }
         return textField;
     }
@@ -69,5 +87,13 @@ public class InputText extends JPanel implements FormItem {
                 getForm().update();
             }
         });
+    }
+
+    public int getMaxCharacters() {
+        return maxCharacters;
+    }
+
+    public void setMaxCharacters(int maxCharacters) {
+        this.maxCharacters = maxCharacters;
     }
 }

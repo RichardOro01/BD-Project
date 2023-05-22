@@ -59,7 +59,13 @@ public class BrandInput extends BaseInput {
         getAmoSeats().setForm(form);
         getSpending().setForm(form);
         getFuelType().setForm(form);
+
+        //validators
         getSpending().setDecimal(true);
+        getBrandName().setMaxCharacters(24);
+        getAmoSeats().setMaxCharacters(3);
+        getSpending().setMaxCharacters(8);
+
         init(form, getSubmitButton());
 
     }
