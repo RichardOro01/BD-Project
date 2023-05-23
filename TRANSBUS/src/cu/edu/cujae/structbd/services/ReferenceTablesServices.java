@@ -1,13 +1,12 @@
 package cu.edu.cujae.structbd.services;
 
-import cu.edu.cujae.structbd.dto.BrandDTO;
 import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.dto.FuelDTO;
 import cu.edu.cujae.structbd.utils.Conection;
 
 import java.util.List;
 
-public class ReferenceTablesService {
+public class ReferenceTablesServices {
     public void refresh() {
         String queryToExecute = "SELECT * FROM fuel";
         List<List<String>> result = Conection.executeQuery(queryToExecute);

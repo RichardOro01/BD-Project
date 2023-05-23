@@ -16,7 +16,7 @@ public class DTOLocator {
     private static List<MonthsDTO> monthsDTOList;
     private static List<ReportDTO> reportDTOList;
     private static List<RoadmapDTO> roadmapDTOList;
-    private static List<Service> serviceList;
+    private static List<ServiceDTO> serviceDTOList;
     private static List<UserDTO> userDTOList;
     private static List<FuelDTO> fuelDTOList;
 
@@ -97,11 +97,11 @@ public class DTOLocator {
         return roadmapDTOList;
     }
 
-    public static List<Service> getServiceList() {
-        if (serviceList == null) {
-            serviceList = new LinkedList<>();
+    public static List<ServiceDTO> getServiceDTOList() {
+        if (serviceDTOList == null) {
+            serviceDTOList = new LinkedList<>();
         }
-        return serviceList;
+        return serviceDTOList;
     }
 
     public static List<UserDTO> getUserDTOList() {

@@ -6,9 +6,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ServicesLocator {
-    private static ReferenceTablesService referenceTablesService = null;
+    private static ReferenceTablesServices referenceTablesServices = null;
     private static BrandServices brandServices = null;
     private static ContractServices contractServices = null;
+    private static ServiceServices serviceServices = null;
     private static DriverServices driverServices = null;
     private static RoadMapServices roadMapServices = null;
     private static CarServices carServices = null;
@@ -30,11 +31,11 @@ public class ServicesLocator {
     public static void setPassword(String password) {
         ServicesLocator.password = password;
     }
-    public static ReferenceTablesService getReferenceTablesService(){
-        if(referenceTablesService == null){
-            referenceTablesService = new ReferenceTablesService();
+    public static ReferenceTablesServices getReferenceTablesService(){
+        if(referenceTablesServices == null){
+            referenceTablesServices = new ReferenceTablesServices();
         }
-        return referenceTablesService;
+        return referenceTablesServices;
     }
     public static BrandServices getBrandServices(){
         if(brandServices == null){
@@ -47,6 +48,12 @@ public class ServicesLocator {
             carServices = new CarServices();
         }
         return carServices;
+    }
+    public static ServiceServices getServiceServices(){
+        if(serviceServices == null){
+            serviceServices = new ServiceServices();
+        }
+        return serviceServices;
     }
     public static RoadMapServices getRoadMapServices(){
         if(roadMapServices == null){

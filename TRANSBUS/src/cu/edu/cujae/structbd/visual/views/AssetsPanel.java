@@ -90,7 +90,12 @@ public class AssetsPanel extends JPanel {
                     List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("roadmap_date", "fleet_number", "kms", "departure_time"));
                     tableRoadmaps.setTableData(data);
                 }
-                case Services -> {}
+                case Services -> {
+                    ServicesLocator.getServiceServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getServiceDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("request_number", "service_name", "tour_group_code", "country_name", "pickup_place", "pickup_time", "pax", "service_kms", "amount"));
+                    tableServices.setTableData(data);
+                }
                 case Contracts -> {
                     ServicesLocator.getContractServices().refresh();
                     List<DTO> dataDTO = new LinkedList<>(DTOLocator.getContractDTOS());
@@ -262,10 +267,9 @@ public class AssetsPanel extends JPanel {
 
     public TableScroll getTableServices() {
         if (tableServices == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
+            String[] columns = new String[]{"request_number", "service_name", "tour_group_code", "country_name", "pickup_place", "pickup_time", "pax", "service_kms", "amount"};
             tableServices = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableServices.setTableData(data);
+            refresh(Table.Services);
         }
         return tableServices;
     }
