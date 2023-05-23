@@ -8,7 +8,6 @@ import cu.edu.cujae.structbd.visual.components.input.*;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.views.Table;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class BrandInput extends BaseInput {

@@ -7,6 +7,8 @@ public class CoupleDTO implements DTO{
     private int coupleCode;
     private int driver1;
     private int driver2;
+    private String driver1Name;
+    private String driver2Name;
 
     public CoupleDTO(int coupleCode, int driver1, int driver2) {
         this.coupleCode = coupleCode;
@@ -28,8 +30,10 @@ public class CoupleDTO implements DTO{
     public void setData(String column, String payload) {
         switch (column) {
             case "couple_code" -> coupleCode = Integer.parseInt((payload));
-            case "driver1" -> driver1 = Integer.parseInt((payload));
-            case "driver2" -> driver2 = Integer.parseInt((payload));
+            case "driver_1" -> driver1 = Integer.parseInt((payload));
+            case "driver_2" -> driver2 = Integer.parseInt((payload));
+            case "driver1_name" -> driver1Name =(payload);
+            case "driver2_anme" -> driver2Name = (payload);
             default -> throw new RuntimeException("Column " + column + " not found");
         }
     }
@@ -41,8 +45,10 @@ public class CoupleDTO implements DTO{
         for (String column : columns) {
             switch (column) {
                 case "couple_code" -> result.add(String.valueOf(coupleCode));
-                case "driver1" -> result.add(String.valueOf(driver1));
-                case "driver2" -> result.add(String.valueOf(driver2));
+                case "driver_1" -> result.add(String.valueOf(driver1));
+                case "driver_2" -> result.add(String.valueOf(driver2));
+                case "driver1_name" -> result.add(String.valueOf(driver1Name));
+                case "driver2_name" -> result.add(String.valueOf(driver2Name));
                 default -> throw new RuntimeException("Column " + column + " not found");
             }
         }
