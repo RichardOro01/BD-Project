@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tourist_group_activities" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71270bf3-6235-4225-844c-9129dfd5de77">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="transbus"/>
+	<parameter name="tour_group" class="java.lang.String"/>
+	<parameter name="start_date" class="java.sql.Date"/>
+	<parameter name="end_date" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select * from tourist_group_activities( $P{tour_group} , $P{start_date}, $P{end_date} ); ]]>
+	</queryString>
+	<field name="service_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="service_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="service_name"/>
+	</field>
+	<field name="country_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="country_code"/>
+		<property name="com.jaspersoft.studio.field.label" value="country_code"/>
+	</field>
+	<field name="pickup_place" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pickup_place"/>
+		<property name="com.jaspersoft.studio.field.label" value="pickup_place"/>
+	</field>
+	<field name="pickup_time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="pickup_time"/>
+		<property name="com.jaspersoft.studio.field.label" value="pickup_time"/>
+	</field>
+	<field name="pax" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="pax"/>
+		<property name="com.jaspersoft.studio.field.label" value="pax"/>
+	</field>
+	<field name="service_kms" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="service_kms"/>
+		<property name="com.jaspersoft.studio.field.label" value="service_kms"/>
+	</field>
+	<field name="amount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="amount"/>
+	</field>
+	<field name="request_number" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="request_number"/>
+		<property name="com.jaspersoft.studio.field.label" value="request_number"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="540" height="84" uuid="e51dbc15-3782-4b32-84ea-2fc38da5e146"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tourist group activities]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="40" uuid="d9581884-9da5-4813-9d33-9b849357a108">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a1ac791-fb4c-47bc-b8bd-c5558c3f4dea"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[service_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="90" height="40" uuid="52fbc541-12b3-490b-b0dd-8737480a9046">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4038dfd7-812b-4cc7-ae3c-6edff8e9b2ea"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[country_code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="90" height="40" uuid="d90514e4-e294-4204-81dd-d26ce304b81b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5884df7f-f105-40fa-a5cd-6bdac9fd529d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[pickup_place]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="0" width="87" height="40" uuid="241fb792-efe3-478f-b200-aabb985c877b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ff39960-55f4-4390-bba4-df1a9fa8d30c"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[pickup_time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="0" width="43" height="40" uuid="2053b707-8229-4630-aef0-b7c36834094f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6be977aa-7682-4b1a-812e-86fc59a1fd4f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[pax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="50" height="40" uuid="9c4fbba5-742f-4588-b450-2e313228435e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a582fbc7-c6b8-4fce-86e7-2677da6b1398"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[service_kms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="50" height="40" uuid="2fb4a2c2-fbc6-4239-bd0e-0232cb71e747">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c18b53f-737d-4d2b-b0a0-a8f1885bc7a9"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="55" height="40" uuid="4d7e02db-7175-4922-a8f8-49db0ec40be3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c61e361-4f61-406c-966c-eb89ee335684"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[request_number]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="30" uuid="75edc8af-c964-4f30-8308-69f04e3494b9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a1ac791-fb4c-47bc-b8bd-c5558c3f4dea"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{service_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="90" height="30" uuid="453aa053-1b8e-4ceb-9f5f-ea86c34af574">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4038dfd7-812b-4cc7-ae3c-6edff8e9b2ea"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{country_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="90" height="30" uuid="54d1184c-e684-4291-898f-aac90d46cd22">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5884df7f-f105-40fa-a5cd-6bdac9fd529d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pickup_place}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="87" height="30" uuid="d4efb4ea-35f2-46ab-8194-5fdbf12cd294">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ff39960-55f4-4390-bba4-df1a9fa8d30c"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pickup_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="0" width="43" height="30" uuid="6fd70879-ab71-45be-995c-657b16dd1bd1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6be977aa-7682-4b1a-812e-86fc59a1fd4f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="50" height="30" uuid="0b5c984d-2fa0-4bf9-b340-c9cff7658065">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a582fbc7-c6b8-4fce-86e7-2677da6b1398"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{service_kms}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="0" width="49" height="30" uuid="be2eb814-77ea-4097-8090-e12b25e509c9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c18b53f-737d-4d2b-b0a0-a8f1885bc7a9"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="0" width="56" height="30" uuid="809c7f7e-85eb-4e36-9b5d-3d44e5963925">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c61e361-4f61-406c-966c-eb89ee335684"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{request_number}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
