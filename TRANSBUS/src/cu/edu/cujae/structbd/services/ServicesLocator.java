@@ -9,6 +9,7 @@ public class ServicesLocator {
     private static ReferenceTablesServices referenceTablesServices = null;
     private static BrandServices brandServices = null;
     private static ContractServices contractServices = null;
+    private static ReportServices reportServices = null;
     private static ServiceServices serviceServices = null;
     private static DiscrepancyServices discrepancyServices = null;
     private static DriverServices driverServices = null;
@@ -55,6 +56,12 @@ public class ServicesLocator {
             serviceServices = new ServiceServices();
         }
         return serviceServices;
+    }
+    public static ReportServices getReportServices(){
+        if(reportServices == null){
+            reportServices = new ReportServices();
+        }
+        return reportServices;
     }
     public static RoadMapServices getRoadMapServices(){
         if(roadMapServices == null){
