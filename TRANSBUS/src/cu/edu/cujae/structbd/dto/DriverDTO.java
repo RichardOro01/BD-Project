@@ -60,7 +60,7 @@ public class DriverDTO implements DTO{
             case "address" -> address = (payload);
             case "phone" -> phone = (payload);
             case "district_name" -> districtName = (payload);
-            case "is_free_cover" -> isFreeCover = Boolean.parseBoolean((payload));
+            case "is_free_cover" -> isFreeCover = payload.equals("t") ? true : false;
             default -> throw new RuntimeException("Column " + column + " not found");
         }
     }
