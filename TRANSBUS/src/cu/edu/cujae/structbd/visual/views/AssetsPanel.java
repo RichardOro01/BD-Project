@@ -19,12 +19,7 @@ public class AssetsPanel extends JPanel {
     private JTabbedPane tabbedPane;
     private TableScroll tableBrands;
     private TableScroll tableCars;
-    private TableScroll tableContracts;
-    private TableScroll tableDiscrepancies;
     private TableScroll tableDrivers;
-    private TableScroll tableReports;
-    private TableScroll tableRoadmaps;
-    private TableScroll tableServices;
     private PButton insertButton;
     private PButton deleteButton;
     private PButton updateButton;
@@ -44,11 +39,6 @@ public class AssetsPanel extends JPanel {
             tabbedPane.addTab("Brands", null, getTableBrands(), null);
             tabbedPane.addTab("Cars", null, getTableCars(), null);
             tabbedPane.addTab("Drivers", null, getTableDrivers(), null);
-            tabbedPane.addTab("Contracts", null, getTableContracts(), null);
-            tabbedPane.addTab("Services", null, getTableServices(), null);
-            tabbedPane.addTab("Discrepancies", null, getTableDiscrepancies(), null);
-            tabbedPane.addTab("Reports", null, getTableReports(), null);
-            tabbedPane.addTab("Roadmaps", null, getTableRoadmaps(), null);
         }
         return tabbedPane;
     }
@@ -62,7 +52,6 @@ public class AssetsPanel extends JPanel {
                     List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_name", "spending"));
                     tableBrands.setTableData(data);
                 }
-                case Couples -> {}
                 case Drivers -> {
                     ServicesLocator.getDriverServices().refresh();
                     List<DTO> dataDTO = new LinkedList<>(DTOLocator.getDriverDTOList());
@@ -74,34 +63,6 @@ public class AssetsPanel extends JPanel {
                     List<DTO> dataDTO = new LinkedList<>(DTOLocator.getCarDTOList());
                     List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("fleet_number", "plate", "brand_name", "driver1", "driver2"));
                     tableCars.setTableData(data);
-                }
-                case Reports -> {}
-                case District -> {}
-                case Roadmaps -> {
-                    ServicesLocator.getRoadMapServices().refresh();
-                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getRoadmapDTOList());
-                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("roadmap_date", "fleet_number", "kms", "departure_time"));
-                    tableRoadmaps.setTableData(data);
-                }
-                case Services -> {
-                    ServicesLocator.getServiceServices().refresh();
-                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getServiceDTOList());
-                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("request_number", "service_name", "tour_group_code", "country_name", "pickup_place", "pickup_time", "pax", "service_kms", "amount"));
-                    tableServices.setTableData(data);
-                }
-                case Contracts -> {
-                    ServicesLocator.getContractServices().refresh();
-                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getContractDTOS());
-                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("applicant_name", "start_date", "end_date", "contract_kms", "contract_amount", "contract_country", "fleet_number"));
-                    tableContracts.setTableData(data);
-                }
-                case Free_Covers -> {}
-                case Discrepancies -> {
-
-                    ServicesLocator.getDiscrepancyServices().refresh();
-                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getDiscrepancyDTOList());
-                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("month_code", "fleet_number", "planned_kms", "tours_kms", "difference_kms", "planned_fuel", "consumed_fuel", "dif_spending_fuel"));
-                    tableDiscrepancies.setTableData(data);
                 }
             }
         } catch (Exception e) {
@@ -197,24 +158,6 @@ public class AssetsPanel extends JPanel {
         return tableCars;
     }
 
-    public TableScroll getTableContracts() {
-        if (tableContracts == null) {
-            String[] columns = new String[]{"Applicant", "Start date", "End date", "Kms", "Amount", "Country", "Fleet number"};
-            tableContracts = new TableScroll(columns);
-            refresh(Table.Contracts);
-        }
-        return tableContracts;
-    }
-
-    public TableScroll getTableDiscrepancies() {
-        if (tableDiscrepancies == null) {
-            String[] columns = new String[]{"Month", "Fleet number", "Planned kms", "Tours kms", "Difference kms", "Planned fuel", "Consumed fuel", "Dif spending fuel"};
-            tableDiscrepancies = new TableScroll(columns);
-            refresh(Table.Discrepancies);
-        }
-        return tableDiscrepancies;
-    }
-
     public TableScroll getTableDrivers() {
         if (tableDrivers == null) {
             String[] columns = new String[]{"ID", "Name", "Address", "Phone", "District name", "Is free cover"};
@@ -224,31 +167,4 @@ public class AssetsPanel extends JPanel {
         return tableDrivers;
     }
 
-    public TableScroll getTableReports() {
-        if (tableReports == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
-            tableReports = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableReports.setTableData(data);
-        }
-        return tableReports;
-    }
-
-    public TableScroll getTableRoadmaps() {
-        if (tableRoadmaps == null) {
-            String[] columns = new String[]{"Date", "Fleet number", "kms", "Departure time"};
-            tableRoadmaps = new TableScroll(columns);
-            refresh(Table.Roadmaps);
-        }
-        return tableRoadmaps;
-    }
-
-    public TableScroll getTableServices() {
-        if (tableServices == null) {
-            String[] columns = new String[]{"request_number", "service_name", "tour_group_code", "country_name", "pickup_place", "pickup_time", "pax", "service_kms", "amount"};
-            tableServices = new TableScroll(columns);
-            refresh(Table.Services);
-        }
-        return tableServices;
-    }
 }
