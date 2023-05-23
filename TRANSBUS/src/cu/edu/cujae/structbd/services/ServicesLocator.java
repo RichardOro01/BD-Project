@@ -8,6 +8,7 @@ import java.util.Properties;
 public class ServicesLocator {
     private static ReferenceTablesService referenceTablesService = null;
     private static BrandServices brandServices = null;
+    private static ContractServices contractServices = null;
     private static CarServices carServices = null;
     private static String username;
     private static String password;
@@ -44,6 +45,12 @@ public class ServicesLocator {
             carServices = new CarServices();
         }
         return carServices;
+    }
+    public static ContractServices getContractServices(){
+        if(contractServices == null){
+            contractServices = new ContractServices();
+        }
+        return contractServices;
     }
     public static Connection getConnection() throws SQLException {
         Connection connection = null;

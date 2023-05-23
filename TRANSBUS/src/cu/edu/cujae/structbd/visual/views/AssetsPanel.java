@@ -81,7 +81,12 @@ public class AssetsPanel extends JPanel {
                 case District -> {}
                 case Roadmaps -> {}
                 case Services -> {}
-                case Contracts -> {}
+                case Contracts -> {
+                    ServicesLocator.getContractServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getContractDTOS());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("applicant_name", "start_date", "end_date", "contract_kms", "contract_amount", "contract_country", "fleet_number"));
+                    tableContracts.setTableData(data);
+                }
                 case Free_Covers -> {}
                 case Discrepancies -> {}
             }
@@ -180,10 +185,9 @@ public class AssetsPanel extends JPanel {
 
     public TableScroll getTableContracts() {
         if (tableContracts == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
+            String[] columns = new String[]{"Applicant", "Start date", "End date", "Kms", "Amount", "Country", "Fleet number"};
             tableContracts = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //.setTableData(data);
+            refresh(Table.Contracts);
         }
         return tableContracts;
     }
