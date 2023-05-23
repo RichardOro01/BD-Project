@@ -1,8 +1,5 @@
 package cu.edu.cujae.structbd.visual.inputs;
-import cu.edu.cujae.structbd.dto.BrandDTO;
-import cu.edu.cujae.structbd.dto.CarDTO;
-import cu.edu.cujae.structbd.dto.DTOLocator;
-import cu.edu.cujae.structbd.dto.FuelDTO;
+import cu.edu.cujae.structbd.dto.*;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.components.input.*;
@@ -84,11 +81,11 @@ public class CarInput extends BaseInput {
     }
     public InputSelect getCouple() {
         if (couple == null) {
-            int size = DTOLocator.getBrandDTOList().size();
+            int size = DTOLocator.getCoupleDTOList().size();
             Option[] options = new Option[size];
             for (int i=0; i<size; i++) {
-                BrandDTO brandDTO = DTOLocator.getBrandDTOList().get(i);
-                options[i] = new Option(String.valueOf(brandDTO.getBrandCode()), brandDTO.getBrandName());
+                CoupleDTO coupleDTO = DTOLocator.getCoupleDTOList().get(i);
+                options[i] = new Option(String.valueOf(coupleDTO.getCoupleCode()), coupleDTO.getDriver1Name() + " - " + coupleDTO.getDriver2Name());
             }
             couple = new InputSelect("Couple:", options);
         }
@@ -105,17 +102,17 @@ public class CarInput extends BaseInput {
             submitButton.addActionListener(e -> {
 
                 try {
-                    String brandName = getPlate().getTextField().getText();
-                    int amoSeats = Integer.parseInt(getFleetNumber().getTextField().getText());
-                    int fuelType = Integer.parseInt(getBrand().getSelected());
-                    double spending = Double.parseDouble(getCouple().getTextField().getText());
+                    String plate = getPlate().getValue();
+                    int fleetNumber = Integer.parseInt(getFleetNumber().getValue());
+                    int brand = Integer.parseInt(getBrand().getValue());
+                    int couple = Integer.parseInt(getCouple().getValue());
                     if (mode == Mode.Insert) {
-                        ServicesLocator.getBrandServices().insert(brandName, amoSeats, fuelType, spending);
+                        ServicesLocator.getCarServices().insert(fleetNumber, plate, couple, brand);
                     } else {
-                        ServicesLocator.getBrandServices().update(brandDTO.getBrandCode(), brandName, amoSeats, fuelType, spending);
+                        ServicesLocator.getCarServices().update(carDTO.getCarCode(), fleetNumber, plate, couple, brand);
                     }
                     dispose();
-                    App.getInstance().getAssetsPanel().refresh(Table.Brands);
+                    App.getInstance().getAssetsPanel().refresh(Table.Cars);
                 } catch (Exception ex) {
                     App.getInstance().handleError(ex);
                 }

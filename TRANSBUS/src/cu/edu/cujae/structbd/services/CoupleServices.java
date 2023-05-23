@@ -1,6 +1,7 @@
 package cu.edu.cujae.structbd.services;
 
 import cu.edu.cujae.structbd.dto.ContractDTO;
+import cu.edu.cujae.structbd.dto.CoupleDTO;
 import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.utils.Conection;
 
@@ -73,12 +74,12 @@ public class CoupleServices implements Service{
             JOIN driver AS driver2 ON couple.driver_2 = driver2.driver_code;
             """;
         List<List<String>> result = Conection.executeQuery(queryToExecute);
-        List<ContractDTO> contracts = DTOLocator.getContractDTOS();
-        contracts.clear();
+        List<CoupleDTO> couples = DTOLocator.getCoupleDTOList();
+        couples.clear();
         List<String> columnNames = result.remove(0);
         for (List<String> list: result) {
-            ContractDTO contract = new ContractDTO(columnNames, list);
-            contracts.add(contract);
+            CoupleDTO couple = new CoupleDTO(columnNames, list);
+            couples.add(couple);
         }
     }
 }

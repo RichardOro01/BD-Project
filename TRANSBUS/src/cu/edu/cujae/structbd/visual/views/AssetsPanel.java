@@ -9,6 +9,7 @@ import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
 import cu.edu.cujae.structbd.visual.inputs.BrandInput;
+import cu.edu.cujae.structbd.visual.inputs.CarInput;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ public class AssetsPanel extends JPanel {
     private TableScroll tableBrands;
     private TableScroll tableCars;
     private TableScroll tableDrivers;
+    private TableScroll tableCouples;
     private PButton insertButton;
     private PButton deleteButton;
     private PButton updateButton;
@@ -39,6 +41,7 @@ public class AssetsPanel extends JPanel {
             tabbedPane.addTab("Brands", null, getTableBrands(), null);
             tabbedPane.addTab("Cars", null, getTableCars(), null);
             tabbedPane.addTab("Drivers", null, getTableDrivers(), null);
+            tabbedPane.addTab("Couples", null, getTableCouples(), null);
         }
         return tabbedPane;
     }
@@ -64,6 +67,12 @@ public class AssetsPanel extends JPanel {
                     List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("fleet_number", "plate", "brand_name", "driver1", "driver2"));
                     tableCars.setTableData(data);
                 }
+                case Couples -> {
+                    ServicesLocator.getCoupleServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getCoupleDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("driver1_name", "driver2_name"));
+                    tableCouples.setTableData(data);
+                }
             }
         } catch (Exception e) {
             App.getInstance().handleError(e);
@@ -81,7 +90,7 @@ public class AssetsPanel extends JPanel {
 
                         break;
                     case "Cars":
-                        //ManagerInput.showCarInput();
+                        new CarInput();
                 }
             });
         }
@@ -107,8 +116,8 @@ public class AssetsPanel extends JPanel {
                         case "Cars" -> {
                             index = getTableCars().getTable().getSelectedRow();
                             if (index >= 0) {
-                                String number = (String) getTableCars().getTable().getValueAt(index, 0);
-                                ServicesLocator.getCarServices().delete(number);
+                                int carCode =  DTOLocator.getCarDTOList().get(index).getCarCode();
+                                ServicesLocator.getCarServices().delete(carCode);
                                 refresh(Table.Brands);
                             }
                         }
@@ -156,6 +165,15 @@ public class AssetsPanel extends JPanel {
             refresh(Table.Cars);
         }
         return tableCars;
+    }
+
+    public TableScroll getTableCouples() {
+        if (tableCouples == null) {
+            String[] columns = new String[]{"Driver 1", "Driver 2"};
+            tableCouples = new TableScroll(columns);
+            refresh(Table.Couples);
+        }
+        return tableCouples;
     }
 
     public TableScroll getTableDrivers() {

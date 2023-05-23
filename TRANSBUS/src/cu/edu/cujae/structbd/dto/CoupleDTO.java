@@ -33,7 +33,7 @@ public class CoupleDTO implements DTO{
             case "driver_1" -> driver1 = Integer.parseInt((payload));
             case "driver_2" -> driver2 = Integer.parseInt((payload));
             case "driver1_name" -> driver1Name =(payload);
-            case "driver2_anme" -> driver2Name = (payload);
+            case "driver2_name" -> driver2Name = (payload);
             default -> throw new RuntimeException("Column " + column + " not found");
         }
     }
@@ -69,5 +69,29 @@ public class CoupleDTO implements DTO{
 
     public void setDriver2(int driver2) {
         this.driver2 = driver2;
+    }
+
+    public int getCoupleCode() {
+        return coupleCode;
+    }
+
+    public void setCoupleCode(int coupleCode) {
+        this.coupleCode = coupleCode;
+    }
+
+    public String getDriver1Name() {
+        return driver1Name;
+    }
+
+    public void setDriver1Name(String driver1Name) {
+        this.driver1Name = driver1Name;
+    }
+
+    public String getDriver2Name() {
+        return driver2Name;
+    }
+
+    public void setDriver2Name(String driver2Name) {
+        this.driver2Name = driver2Name;
     }
 }
