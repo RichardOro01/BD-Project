@@ -32,11 +32,13 @@ public class CarServices implements Service {
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call update_car(?, ?, ?, ?) }");
+            call = connection.prepareCall("{ call update_car(?, ?, ?, ?, ?) }");
             call.setInt(1, (int) args[0]);
-            call.setString(2, (String) args[1]);
-            call.setInt(3, (int) args[2]);
+            call.setInt(2, (int) args[1]);
+            call.setString(3, (String) args[2]);
             call.setInt(4, (int) args[3]);
+            call.setInt(5, (int) args[4]);
+            System.out.println(call);
             call.execute();
         } catch (Exception e) {
             throw new RuntimeException(e);

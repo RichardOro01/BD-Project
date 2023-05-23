@@ -1,5 +1,6 @@
 package cu.edu.cujae.structbd.visual.views;
 import cu.edu.cujae.structbd.dto.BrandDTO;
+import cu.edu.cujae.structbd.dto.CarDTO;
 import cu.edu.cujae.structbd.dto.DTO;
 import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.services.ServicesLocator;
@@ -118,7 +119,7 @@ public class AssetsPanel extends JPanel {
                             if (index >= 0) {
                                 int carCode =  DTOLocator.getCarDTOList().get(index).getCarCode();
                                 ServicesLocator.getCarServices().delete(carCode);
-                                refresh(Table.Brands);
+                                refresh(Table.Cars);
                             }
                         }
                     }
@@ -135,14 +136,23 @@ public class AssetsPanel extends JPanel {
             updateButton = new PButton("Update");
             updateButton.setBounds(getDeleteButton().getX()+getDeleteButton().getWidth()+20, getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
             updateButton.addActionListener(e -> {
+                int index = -1;
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
                     case "Brands":
-                        int index = getTableBrands().getTable().getSelectedRow();
+                        index = getTableBrands().getTable().getSelectedRow();
                         if (index >= 0) {
                             BrandDTO brandDTO = DTOLocator.getBrandDTOList().get(index);
                             new BrandInput(brandDTO);
                         }
                         break;
+                    case "Cars":
+                        index = getTableCars().getTable().getSelectedRow();
+                        if (index >= 0) {
+                            CarDTO carDTO = DTOLocator.getCarDTOList().get(index);
+                            new CarInput(carDTO);
+                        }
+                        break;
+
                 }
             });
         }

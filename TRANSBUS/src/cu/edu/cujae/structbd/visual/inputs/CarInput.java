@@ -7,6 +7,9 @@ import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.views.Table;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class CarInput extends BaseInput {
     private Mode mode;
@@ -25,7 +28,7 @@ public class CarInput extends BaseInput {
         initWindow();
         getPlate().setValue(carDTO.getPlate());
         getFleetNumber().setValue(String.valueOf(carDTO.getFleetNumber()));
-        getCouple().setValue(String.valueOf(carDTO.getDriver1() + " - " + carDTO.getDriver1()));
+        getCouple().setValue(String.valueOf(carDTO.getDriver1() + " - " + carDTO.getDriver2()));
         getBrand().setValue(String.valueOf(carDTO.getBrandName()));
         setVisible(true);
     }
@@ -75,6 +78,7 @@ public class CarInput extends BaseInput {
                 BrandDTO brandDTO = DTOLocator.getBrandDTOList().get(i);
                 options[i] = new Option(String.valueOf(brandDTO.getBrandCode()), brandDTO.getBrandName());
             }
+
             brand = new InputSelect("Brand:", options);
         }
         return brand;
@@ -109,7 +113,9 @@ public class CarInput extends BaseInput {
                     if (mode == Mode.Insert) {
                         ServicesLocator.getCarServices().insert(fleetNumber, plate, couple, brand);
                     } else {
-                        ServicesLocator.getCarServices().update(carDTO.getCarCode(), fleetNumber, plate, couple, brand);
+                        ServicesLocator.getCarServices().update(carDTO.getCarCode(), fleetNumber, plate, brand, couple );
+
+
                     }
                     dispose();
                     App.getInstance().getAssetsPanel().refresh(Table.Cars);

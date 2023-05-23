@@ -40,7 +40,9 @@ public class InputSelect extends JPanel implements FormItem {
     }
 
     public String getSelected() {
-        return ((Option) Objects.requireNonNull(getComboBox().getSelectedItem())).getKey();
+
+            return ((Option) Objects.requireNonNull(getComboBox().getSelectedItem())).getKey();
+
     }
 
     public void setSelectd(String value) {
