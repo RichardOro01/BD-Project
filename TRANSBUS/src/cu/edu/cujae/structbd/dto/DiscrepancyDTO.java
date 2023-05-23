@@ -5,6 +5,7 @@ import java.util.List;
 
 public class DiscrepancyDTO implements DTO{
     private String monthCode;
+    private int carCode;
     private int fleetNumber;
     private double plannedKms;
     private double toursKms;
@@ -13,8 +14,9 @@ public class DiscrepancyDTO implements DTO{
     private double consumedFuel;
     private double difSpendingFuel;
 
-    public DiscrepancyDTO(String monthCode, int fleetNumber, double plannedKms, double toursKms, double differenceKms, double plannedFuel, double consumedFuel, double difSpendingFuel) {
+    public DiscrepancyDTO(String monthCode, int carCode, int fleetNumber, double plannedKms, double toursKms, double differenceKms, double plannedFuel, double consumedFuel, double difSpendingFuel) {
         this.monthCode = monthCode;
+        this.carCode = carCode;
         this.fleetNumber = fleetNumber;
         this.plannedKms = plannedKms;
         this.toursKms = toursKms;
@@ -41,6 +43,7 @@ public class DiscrepancyDTO implements DTO{
         for (String column : columns) {
             switch (column) {
                 case "month_code" -> result.add(String.valueOf(monthCode));
+                case "car_code" -> result.add(String.valueOf(carCode));
                 case "fleet_number" -> result.add(String.valueOf(fleetNumber));
                 case "planned_kms" -> result.add(String.valueOf(plannedKms));
                 case "tours_kms" -> result.add(String.valueOf(toursKms));
@@ -58,6 +61,7 @@ public class DiscrepancyDTO implements DTO{
     public void setData(String column, String payload) {
         switch (column) {
             case "month_code" -> monthCode = (payload);
+            case "car_code" -> carCode = Integer.parseInt((payload));
             case "fleet_number" -> fleetNumber = Integer.parseInt((payload));
             case "planned_kms" -> plannedKms = Double.parseDouble((payload));
             case "tours_kms" -> toursKms = Double.parseDouble((payload));
@@ -123,5 +127,21 @@ public class DiscrepancyDTO implements DTO{
 
     public void setDifSpendingFuel(double difSpendingFuel) {
         this.difSpendingFuel = difSpendingFuel;
+    }
+
+    public void setMonthCode(String monthCode) {
+        this.monthCode = monthCode;
+    }
+
+    public int getCarCode() {
+        return carCode;
+    }
+
+    public void setCarCode(int carCode) {
+        this.carCode = carCode;
+    }
+
+    public void setFleetNumber(int fleetNumber) {
+        this.fleetNumber = fleetNumber;
     }
 }

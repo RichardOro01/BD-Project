@@ -103,7 +103,13 @@ public class AssetsPanel extends JPanel {
                     tableContracts.setTableData(data);
                 }
                 case Free_Covers -> {}
-                case Discrepancies -> {}
+                case Discrepancies -> {
+
+                    ServicesLocator.getDiscrepancyServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getDiscrepancyDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("month_code", "fleet_number", "planned_kms", "tours_kms", "difference_kms", "planned_fuel", "consumed_fuel", "dif_spending_fuel"));
+                    tableDiscrepancies.setTableData(data);
+                }
             }
         } catch (Exception e) {
             App.getInstance().handleError(e);
@@ -219,10 +225,9 @@ public class AssetsPanel extends JPanel {
 
     public TableScroll getTableDiscrepancies() {
         if (tableDiscrepancies == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
+            String[] columns = new String[]{"Month", "Fleet number", "Planned kms", "Tours kms", "Difference kms", "Planned fuel", "Consumed fuel", "Dif spending fuel"};
             tableDiscrepancies = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableDiscrepancies.setTableData(data);
+            refresh(Table.Discrepancies);
         }
         return tableDiscrepancies;
     }
