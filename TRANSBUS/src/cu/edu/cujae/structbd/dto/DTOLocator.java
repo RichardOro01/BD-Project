@@ -17,6 +17,7 @@ public class DTOLocator {
     private static List<ReportDTO> reportDTOList;
     private static List<RoadmapDTO> roadmapDTOList;
     private static List<ServiceDTO> serviceDTOList;
+    private static List<RoleDTO> roleDTOList;
     private static List<UserDTO> userDTOList;
     private static List<FuelDTO> fuelDTOList;
 
@@ -117,4 +118,11 @@ public class DTOLocator {
         }
         return fuelDTOList;
     }
+    public static List<RoleDTO> getRoleDTOList() {
+        if (roleDTOList == null) {
+            roleDTOList = new LinkedList<>();
+        }
+        return roleDTOList;
+    }
+
 }

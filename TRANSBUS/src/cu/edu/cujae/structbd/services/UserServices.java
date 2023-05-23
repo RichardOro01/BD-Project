@@ -2,18 +2,22 @@ package cu.edu.cujae.structbd.services;
 
 import cu.edu.cujae.structbd.dto.DTOLocator;
 import cu.edu.cujae.structbd.dto.RoadmapDTO;
+import cu.edu.cujae.structbd.dto.UserDTO;
 import cu.edu.cujae.structbd.utils.Conection;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Time;
 import java.util.List;
 
-public class RoadMapServices implements Service{
+public class UserServices implements Service{
     @Override
     public void insert(Object... args) throws SQLException {
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call insert_roadmap(?, ?, ?, ?) }");
+            call = connection.prepareCall("{ call insert_user(?, ?, ?, ?) }");
             call.setDate(1, (Date) args[0]);
             call.setInt(2, (int) args[1]);
             call.setDouble(3, (double) args[2]);
@@ -32,7 +36,7 @@ public class RoadMapServices implements Service{
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call update_roadmap(?, ?, ?, ?, ?, ?) }");
+            call = connection.prepareCall("{ call update_user(?, ?, ?, ?, ?, ?) }");
             call.setDate(1, (Date) args[0]);
             call.setDate(2, (Date) args[1]);
             call.setInt(3, (int) args[2]);
@@ -53,8 +57,7 @@ public class RoadMapServices implements Service{
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call delete_roadmap(?, ?) }");
-            call.setDate(1, (Date) args[0]);
+            call = connection.prepareCall("{ call delete_user(?) }");
             call.setInt(1, (int) args[0]);
             call.execute();
         } catch (Exception e) {
@@ -69,20 +72,18 @@ public class RoadMapServices implements Service{
     @Override
     public void refresh() {
         String queryToExecute = """
-            SELECT roadmap_date, roadmap.car_code, fleet_number, kms, departure_time
-             FROM roadmap
-             JOIN car ON car.car_code = roadmap.car_code
-             ORDER BY roadmap_date;
+            SELECT username, password, name, description
+             FROM users
+             JOIN role ON users.role_code = role.role_code
+             ORDER BY username;
         """;
         List<List<String>> result = Conection.executeQuery(queryToExecute);
-        List<RoadmapDTO> roadmaps = DTOLocator.getRoadmapDTOList();
-        roadmaps.clear();
+        List<UserDTO> users = DTOLocator.getUserDTOList();
+        users.clear();
         List<String> columnNames = result.remove(0);
         for (List<String> list: result) {
-            RoadmapDTO roadmap = new RoadmapDTO(columnNames, list);
-            roadmaps.add(roadmap);
+            UserDTO user = new UserDTO(columnNames, list);
+            users.add(user);
         }
     }
 }
-
-

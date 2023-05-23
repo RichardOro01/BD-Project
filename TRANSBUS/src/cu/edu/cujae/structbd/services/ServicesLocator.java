@@ -11,6 +11,7 @@ public class ServicesLocator {
     private static ContractServices contractServices = null;
     private static ReportServices reportServices = null;
     private static CoupleServices coupleServices = null;
+    private static UserServices userServices = null;
     private static ServiceServices serviceServices = null;
     private static DiscrepancyServices discrepancyServices = null;
     private static DriverServices driverServices = null;
@@ -75,6 +76,12 @@ public class ServicesLocator {
             roadMapServices = new RoadMapServices();
         }
         return roadMapServices;
+    }
+    public static UserServices getUserServices(){
+        if(userServices == null){
+            userServices = new UserServices();
+        }
+        return userServices;
     }
     public static DiscrepancyServices getDiscrepancyServices(){
         if(discrepancyServices == null){

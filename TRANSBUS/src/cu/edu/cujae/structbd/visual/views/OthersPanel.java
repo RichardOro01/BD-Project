@@ -1,16 +1,11 @@
 package cu.edu.cujae.structbd.visual.views;
 
-import cu.edu.cujae.structbd.dto.BrandDTO;
-import cu.edu.cujae.structbd.dto.DTOLocator;
-import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
-import cu.edu.cujae.structbd.visual.inputs.BrandInput;
 
 import javax.swing.*;
-import java.sql.SQLException;
 
 public class OthersPanel extends JPanel {
     private JTabbedPane tabbedPane;
