@@ -4,9 +4,7 @@ import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.visual.components.BarOption;
 import cu.edu.cujae.structbd.visual.components.BarOptions;
 import cu.edu.cujae.structbd.visual.components.SidePanel;
-import cu.edu.cujae.structbd.visual.views.HomePanel;
-import cu.edu.cujae.structbd.visual.views.ServicesPanel;
-import cu.edu.cujae.structbd.visual.views.AssetsPanel;
+import cu.edu.cujae.structbd.visual.views.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +16,13 @@ public class App extends JFrame {
     private BarOptions options;
     private int height;
     private AssetsPanel assetsPanel;
+    private AdminPanel adminPanel;
+    private HomePanel homePanel;
+    private OthersPanel othersPanel;
+    private ReportsPanel reportsPanel;
+    private ServicesPanel servicesPanel;
+
+
 
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
@@ -79,13 +84,17 @@ public class App extends JFrame {
 
     public BarOptions getOptions(){
         if (options==null){
-            options = new BarOptions(getBodyPanel(),60, 1);
+            options = new BarOptions(getBodyPanel(),40, 0);
             options.setBackground(Color.WHITE);
             options.setBounds(10,160,sidePanel.getWidth()-10,500);
-            options.addOption(new BarOption("Home"), new HomePanel(), true);
+            options.addOption(new BarOption("Home"), getHomePanel(), true);
             BarOption management = options.addParentOption(new BarOption("Management"));
-            options.addSubOption(new BarOption("Services"), new ServicesPanel(), management);
+            options.addSubOption(new BarOption("Services"), getServicesPanel(), management);
             options.addSubOption(new BarOption("Assets"), getAssetsPanel(), management);
+            BarOption reports = options.addParentOption(new BarOption("Reports"));
+            options.addSubOption(new BarOption("By Months"), getReportsPanel(), reports);
+            options.addOption(new BarOption("Admin"), getAdminPanel());
+
         }
         return options;
     }
@@ -97,4 +106,38 @@ public class App extends JFrame {
         return assetsPanel;
     }
 
+    public AdminPanel getAdminPanel() {
+        if (adminPanel == null) {
+            adminPanel = new AdminPanel();
+        }
+        return adminPanel;
+    }
+
+    public HomePanel getHomePanel() {
+        if (homePanel == null) {
+            homePanel = new HomePanel();
+        }
+        return homePanel;
+    }
+
+    public OthersPanel getOthersPanel() {
+        if (othersPanel == null) {
+            othersPanel = new OthersPanel();
+        }
+        return othersPanel;
+    }
+
+    public ReportsPanel getReportsPanel() {
+        if (reportsPanel == null) {
+            reportsPanel = new ReportsPanel();
+        }
+        return reportsPanel;
+    }
+
+    public ServicesPanel getServicesPanel() {
+        if (servicesPanel == null) {
+            servicesPanel = new ServicesPanel();
+        }
+        return servicesPanel;
+    }
 }

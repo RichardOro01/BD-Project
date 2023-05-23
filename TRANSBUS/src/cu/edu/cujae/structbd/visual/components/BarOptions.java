@@ -29,7 +29,7 @@ public class BarOptions extends JPanel{
     }
 
     public void render() {
-        setBackground(Color.GRAY);
+        //setBackground(Color.GRAY);
         removeAll();
         int size = 0;
         //int currentY = 0;
