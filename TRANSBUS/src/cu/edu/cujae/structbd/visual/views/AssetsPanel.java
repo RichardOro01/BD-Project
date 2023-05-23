@@ -84,7 +84,12 @@ public class AssetsPanel extends JPanel {
                 }
                 case Reports -> {}
                 case District -> {}
-                case Roadmaps -> {}
+                case Roadmaps -> {
+                    ServicesLocator.getRoadMapServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getRoadmapDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("roadmap_date", "fleet_number", "kms", "departure_time"));
+                    tableRoadmaps.setTableData(data);
+                }
                 case Services -> {}
                 case Contracts -> {
                     ServicesLocator.getContractServices().refresh();
@@ -248,10 +253,9 @@ public class AssetsPanel extends JPanel {
 
     public TableScroll getTableRoadmaps() {
         if (tableRoadmaps == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
+            String[] columns = new String[]{"Date", "Fleet number", "kms", "Departure time"};
             tableRoadmaps = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableRoadmaps.setTableData(data);
+            refresh(Table.Roadmaps);
         }
         return tableRoadmaps;
     }

@@ -10,6 +10,7 @@ public class ServicesLocator {
     private static BrandServices brandServices = null;
     private static ContractServices contractServices = null;
     private static DriverServices driverServices = null;
+    private static RoadMapServices roadMapServices = null;
     private static CarServices carServices = null;
     private static String username;
     private static String password;
@@ -46,6 +47,12 @@ public class ServicesLocator {
             carServices = new CarServices();
         }
         return carServices;
+    }
+    public static RoadMapServices getRoadMapServices(){
+        if(roadMapServices == null){
+            roadMapServices = new RoadMapServices();
+        }
+        return roadMapServices;
     }
     public static ContractServices getContractServices(){
         if(contractServices == null){
