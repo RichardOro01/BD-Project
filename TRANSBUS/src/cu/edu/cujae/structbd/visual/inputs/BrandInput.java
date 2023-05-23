@@ -21,23 +21,15 @@ public class BrandInput extends BaseInput {
     private InputNumber spending;
     private PButton submitButton;
 
-//    public static void main(String[] args){
-//        EventQueue.invokeLater(() -> {
-//            BrandInput frame = new BrandInput();
-//            frame.setLocationRelativeTo(null);
-//            frame.setVisible(true);
-//        });
-//    }
-
     public BrandInput(BrandDTO brandDTO) {
         this.mode = Mode.Update;
         this.brandDTO = brandDTO;
         setTitle("Update brand");
         initWindow();
-        getBrandName().getTextField().setText(brandDTO.getBrandName());
-        getAmoSeats().getTextField().setText(String.valueOf(brandDTO.getAmoSeats()));
-        getSpending().getTextField().setText(String.valueOf(brandDTO.getSpending()));
-        getFuelType().setSelectd(String.valueOf(brandDTO.getFuelType()));
+        getBrandName().setValue(brandDTO.getBrandName());
+        getAmoSeats().setValue(String.valueOf(brandDTO.getAmoSeats()));
+        getSpending().setValue(String.valueOf(brandDTO.getSpending()));
+        getFuelType().setValue(String.valueOf(brandDTO.getFuelType()));
         setVisible(true);
     }
     public BrandInput() {
