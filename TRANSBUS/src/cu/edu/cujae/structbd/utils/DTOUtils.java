@@ -10,8 +10,8 @@ public class DTOUtils {
     public static List<List<String>> dtoListToStringList(List<DTO> dtoList, List<String> columns) {
         List<List<String>> data = new LinkedList<>();
         if (dtoList != null && columns != null) {
-            for (DTO brand: dtoList) {
-                data.add(((BrandDTO)brand).getData(columns));
+            for (DTO dto: dtoList) {
+                data.add(dto.getData(columns));
             }
         }
         return data;

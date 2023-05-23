@@ -62,10 +62,8 @@ public class AssetsPanel extends JPanel {
 
     public void refresh(Table table){
         try {
-            System.out.println("table " + table);
             switch (table){
                 case Brands -> {
-                    System.out.println("actualizando " + table);
                     ServicesLocator.getBrandServices().refresh();
                     List<DTO> dataDTO = new LinkedList<>(DTOLocator.getBrandDTOList());
                     List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("brand_name", "amo_seats", "fuel_name", "spending"));
@@ -74,7 +72,10 @@ public class AssetsPanel extends JPanel {
                 case Couples -> {}
                 case Drivers -> {}
                 case Cars -> {
-                    //tableCars.setTableData(ServicesLocator.getCarServices().getAll());
+                    ServicesLocator.getCarServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getCarDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("fleet_number", "plate", "brand_name", "driver1", "driver2"));
+                    tableCars.setTableData(data);
                 }
                 case Reports -> {}
                 case District -> {}
@@ -97,12 +98,7 @@ public class AssetsPanel extends JPanel {
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
                     case "Brands":
                         new BrandInput();
-//                        BrandInput input = new BrandInput();
-//                        EventQueue.invokeLater(() -> input.pack());
-//                        revalidate();
-//                        input.revalidate();
-//                        App.getInstance().repaint();
-//                        App.getInstance().revalidate();
+
                         break;
                     case "Cars":
                         //ManagerInput.showCarInput();
@@ -175,10 +171,9 @@ public class AssetsPanel extends JPanel {
 
     public TableScroll getTableCars() {
         if (tableCars == null) {
-            String[] columns = new String[]{"Number", "Plate", "Couple", "Brand"};
+            String[] columns = new String[]{"Number", "Plate", "Brand", "Driver 1", "Driver 2"};
             tableCars = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getCarServices().getAll();
-            //tableCars.setTableData(data);
+            refresh(Table.Cars);
         }
         return tableCars;
     }
