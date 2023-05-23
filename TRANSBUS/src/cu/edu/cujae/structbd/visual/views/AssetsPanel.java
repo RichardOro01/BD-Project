@@ -1,8 +1,5 @@
 package cu.edu.cujae.structbd.visual.views;
-import cu.edu.cujae.structbd.dto.BrandDTO;
-import cu.edu.cujae.structbd.dto.CarDTO;
-import cu.edu.cujae.structbd.dto.DTO;
-import cu.edu.cujae.structbd.dto.DTOLocator;
+import cu.edu.cujae.structbd.dto.*;
 import cu.edu.cujae.structbd.services.ServicesLocator;
 import cu.edu.cujae.structbd.utils.DTOUtils;
 import cu.edu.cujae.structbd.visual.App;
@@ -11,6 +8,7 @@ import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
 import cu.edu.cujae.structbd.visual.inputs.BrandInput;
 import cu.edu.cujae.structbd.visual.inputs.CarInput;
+import cu.edu.cujae.structbd.visual.inputs.DriverInput;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -92,6 +90,10 @@ public class AssetsPanel extends JPanel {
                         break;
                     case "Cars":
                         new CarInput();
+                        break;
+                    case "Drivers":
+                        new DriverInput();
+                        break;
                 }
             });
         }
@@ -122,6 +124,14 @@ public class AssetsPanel extends JPanel {
                                 refresh(Table.Cars);
                             }
                         }
+                        case "Drivers" -> {
+                            index = getTableDrivers().getTable().getSelectedRow();
+                            if (index >= 0) {
+                                int driverCode =  DTOLocator.getDriverDTOList().get(index).getDriverCode();
+                                ServicesLocator.getDriverServices().delete(driverCode);
+                                refresh(Table.Drivers);
+                            }
+                        }
                     }
                 } catch (SQLException ex) {
                     App.getInstance().handleError(ex);
@@ -150,6 +160,13 @@ public class AssetsPanel extends JPanel {
                         if (index >= 0) {
                             CarDTO carDTO = DTOLocator.getCarDTOList().get(index);
                             new CarInput(carDTO);
+                        }
+                        break;
+                    case "Drivers":
+                        index = getTableDrivers().getTable().getSelectedRow();
+                        if (index >= 0) {
+                            DriverDTO driverDTO = DTOLocator.getDriverDTOList().get(index);
+                            new DriverInput(driverDTO);
                         }
                         break;
 

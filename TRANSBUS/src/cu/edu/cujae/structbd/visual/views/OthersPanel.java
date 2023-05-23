@@ -1,11 +1,21 @@
 package cu.edu.cujae.structbd.visual.views;
 
+import cu.edu.cujae.structbd.dto.BrandDTO;
+import cu.edu.cujae.structbd.dto.DTO;
+import cu.edu.cujae.structbd.dto.DTOLocator;
+import cu.edu.cujae.structbd.dto.DistrictDTO;
+import cu.edu.cujae.structbd.services.ServicesLocator;
+import cu.edu.cujae.structbd.utils.DTOUtils;
 import cu.edu.cujae.structbd.visual.App;
 import cu.edu.cujae.structbd.visual.Definitions;
 import cu.edu.cujae.structbd.visual.components.PButton;
 import cu.edu.cujae.structbd.visual.components.TableScroll;
+import cu.edu.cujae.structbd.visual.inputs.BrandInput;
 
 import javax.swing.*;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OthersPanel extends JPanel {
     private JTabbedPane tabbedPane;
@@ -42,7 +52,12 @@ public class OthersPanel extends JPanel {
             switch (table){
                 case TourGruop -> {}
                 case Discrepancies -> {}
-                case District -> {}
+                case District -> {
+                    ServicesLocator.getDistrictServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getDistrictDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("district_name"));
+                    tableDistrict.setTableData(data);
+                }
                 case Fuel -> {}
             }
         } catch (Exception e) {
@@ -56,7 +71,10 @@ public class OthersPanel extends JPanel {
             insertButton.setBounds(getTabbedPane().getX(), getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
             insertButton.addActionListener(e -> {
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
+                    case "District":
+                        //new DistrictInput();
 
+                        break;
                 }
             });
         }
@@ -68,14 +86,21 @@ public class OthersPanel extends JPanel {
             deleteButton = new PButton("Delete");
             deleteButton.setBounds(getInsertButton().getX()+getInsertButton().getWidth()+20, getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
             deleteButton.addActionListener(e -> {
-//                try {
-//                    int index;
+                try {
+                    int index;
                     switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())) {
-
+                        case "District" -> {
+                            index = getTableDistrict().getTable().getSelectedRow();
+                            if (index >= 0) {
+                                int districtCode = DTOLocator.getDistrictDTOList().get(index).getDistrictCode();
+                                ServicesLocator.getDistrictServices().delete(districtCode);
+                                refresh(Table.Brands);
+                            }
+                        }
                     }
-//                } catch (SQLException ex) {
-//                    App.getInstance().handleError(ex);
-//                }
+                } catch (SQLException ex) {
+                    App.getInstance().handleError(ex);
+                }
             });
         }
         return deleteButton;
@@ -86,8 +111,15 @@ public class OthersPanel extends JPanel {
             updateButton = new PButton("Update");
             updateButton.setBounds(getDeleteButton().getX()+getDeleteButton().getWidth()+20, getTabbedPane().getY() + getTabbedPane().getHeight() + 20, 60, 30);
             updateButton.addActionListener(e -> {
+                int index;
                 switch (getTabbedPane().getTitleAt(getTabbedPane().getSelectedIndex())){
-
+                    case "District":
+                        index = getTableDistrict().getTable().getSelectedRow();
+                        if (index >= 0) {
+                            DistrictDTO districtDTO = DTOLocator.getDistrictDTOList().get(index);
+                            //new DistrictInput(districtDTO);
+                        }
+                        break;
                 }
             });
         }

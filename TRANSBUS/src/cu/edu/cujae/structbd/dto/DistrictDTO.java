@@ -25,7 +25,10 @@ public class DistrictDTO implements DTO{
     @Override
     public void setData(String column, String payload) {
         switch (column) {
-            case "district_code" -> districtCode = Integer.parseInt((payload));
+            case "district_code" -> {
+                districtCode = Integer.parseInt((payload));
+                System.out.println(districtCode);
+            }
             case "district_name" -> districtName = (payload);
             default -> throw new RuntimeException("Column " + column + " not found");
         }

@@ -16,7 +16,7 @@ public class BaseInput extends JDialog implements FormConatiner{
         this.submitButton = submitButton;
         JPanel formContainer = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 20));
         JPanel footer = new JPanel(new FlowLayout(FlowLayout.RIGHT, 40, 10));
-        setBounds(0, 0, 600, 200);
+        setBounds(0, 0, 600, 350);
         setLayout(new BorderLayout());
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
