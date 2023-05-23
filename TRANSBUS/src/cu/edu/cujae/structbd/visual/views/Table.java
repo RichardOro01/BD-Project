@@ -11,5 +11,9 @@ public enum Table {
         Discrepancies,
         Reports,
         Roadmaps,
-        District
+        District,
+        TourGruop,
+        Users,
+        Country,
+        Fuel
 }

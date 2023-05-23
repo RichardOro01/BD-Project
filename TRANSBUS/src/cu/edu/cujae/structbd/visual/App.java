@@ -91,6 +91,7 @@ public class App extends JFrame {
             BarOption management = options.addParentOption(new BarOption("Management"));
             options.addSubOption(new BarOption("Services"), getServicesPanel(), management);
             options.addSubOption(new BarOption("Assets"), getAssetsPanel(), management);
+            options.addSubOption(new BarOption("Others"), getOthersPanel(), management);
             BarOption reports = options.addParentOption(new BarOption("Reports"));
             options.addSubOption(new BarOption("By Months"), getReportsPanel(), reports);
             options.addOption(new BarOption("Admin"), getAdminPanel());

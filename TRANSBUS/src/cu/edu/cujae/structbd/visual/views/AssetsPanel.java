@@ -11,7 +11,6 @@ import cu.edu.cujae.structbd.visual.components.TableScroll;
 import cu.edu.cujae.structbd.visual.inputs.BrandInput;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,11 +20,8 @@ public class AssetsPanel extends JPanel {
     private TableScroll tableBrands;
     private TableScroll tableCars;
     private TableScroll tableContracts;
-    private TableScroll tableCouples;
     private TableScroll tableDiscrepancies;
-    private TableScroll tableDistricts;
     private TableScroll tableDrivers;
-    private TableScroll tableFreeCovers;
     private TableScroll tableReports;
     private TableScroll tableRoadmaps;
     private TableScroll tableServices;
@@ -49,13 +45,10 @@ public class AssetsPanel extends JPanel {
             tabbedPane.addTab("Cars", null, getTableCars(), null);
             tabbedPane.addTab("Drivers", null, getTableDrivers(), null);
             tabbedPane.addTab("Contracts", null, getTableContracts(), null);
-            tabbedPane.addTab("Free Covers", null, getTableFreeCovers(), null);
             tabbedPane.addTab("Services", null, getTableServices(), null);
-            tabbedPane.addTab("Couples", null, getTableCouples(), null);
             tabbedPane.addTab("Discrepancies", null, getTableDiscrepancies(), null);
             tabbedPane.addTab("Reports", null, getTableReports(), null);
             tabbedPane.addTab("Roadmaps", null, getTableRoadmaps(), null);
-            tabbedPane.addTab("District", null, getTableDistricts(), null);
         }
         return tabbedPane;
     }
@@ -213,16 +206,6 @@ public class AssetsPanel extends JPanel {
         return tableContracts;
     }
 
-    public TableScroll getTableCouples() {
-        if (tableCouples == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
-            tableCouples = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableCouples.setTableData(data);
-        }
-        return tableCouples;
-    }
-
     public TableScroll getTableDiscrepancies() {
         if (tableDiscrepancies == null) {
             String[] columns = new String[]{"Month", "Fleet number", "Planned kms", "Tours kms", "Difference kms", "Planned fuel", "Consumed fuel", "Dif spending fuel"};
@@ -230,16 +213,6 @@ public class AssetsPanel extends JPanel {
             refresh(Table.Discrepancies);
         }
         return tableDiscrepancies;
-    }
-
-    public TableScroll getTableDistricts() {
-        if (tableDistricts == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
-            tableDistricts = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableDistricts.setTableData(data);
-        }
-        return tableDistricts;
     }
 
     public TableScroll getTableDrivers() {
@@ -277,15 +250,5 @@ public class AssetsPanel extends JPanel {
             refresh(Table.Services);
         }
         return tableServices;
-    }
-
-    public TableScroll getTableFreeCovers() {
-        if (tableFreeCovers == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
-            tableFreeCovers = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableFreeCovers.setTableData(data);
-        }
-        return tableFreeCovers;
     }
 }
