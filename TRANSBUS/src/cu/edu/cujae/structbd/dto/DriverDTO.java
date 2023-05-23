@@ -6,16 +6,16 @@ import java.util.List;
 public class DriverDTO implements DTO{
     private int driverCode;
     private String idDriver;
-    private String driverId;
+    private String driverName;
     private String address;
     private String phone;
-    private int districtName;
+    private String districtName;
     private boolean isFreeCover;
 
-    public DriverDTO(int driverCode, String idDriver, String driverId, String address, String phone, int districtName, boolean isFreeCover) {
+    public DriverDTO(int driverCode, String idDriver, String driverName, String address, String phone, String districtName, boolean isFreeCover) {
         this.driverCode = driverCode;
         this.idDriver = idDriver;
-        this.driverId = driverId;
+        this.driverName = driverName;
         this.address = address;
         this.phone = phone;
         this.districtName = districtName;
@@ -40,7 +40,7 @@ public class DriverDTO implements DTO{
             switch (column) {
                 case "driver_code" -> result.add(String.valueOf(driverCode));
                 case "id_driver" -> result.add(String.valueOf(idDriver));
-                case "driver_id" -> result.add(String.valueOf(driverId));
+                case "driver_name" -> result.add(String.valueOf(driverName));
                 case "address" -> result.add(String.valueOf(address));
                 case "phone" -> result.add(String.valueOf(phone));
                 case "district_name" -> result.add(String.valueOf(districtName));
@@ -56,10 +56,10 @@ public class DriverDTO implements DTO{
         switch (column) {
             case "driver_code" -> driverCode = Integer.parseInt((payload));
             case "id_driver" -> idDriver = (payload);
-            case "driver_id" -> driverId = (payload);
+            case "driver_name" -> driverName = (payload);
             case "address" -> address = (payload);
             case "phone" -> phone = (payload);
-            case "district_name" -> districtName = Integer.parseInt((payload));
+            case "district_name" -> districtName = (payload);
             case "is_free_cover" -> isFreeCover = Boolean.parseBoolean((payload));
             default -> throw new RuntimeException("Column " + column + " not found");
         }
@@ -77,12 +77,12 @@ public class DriverDTO implements DTO{
         this.idDriver = idDriver;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public String getDriverName() {
+        return driverName;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
     }
 
     public String getAddress() {
@@ -101,11 +101,11 @@ public class DriverDTO implements DTO{
         this.phone = phone;
     }
 
-    public int getDistrictName() {
+    public String getDistrictName() {
         return districtName;
     }
 
-    public void setDistrictName(int districtName) {
+    public void setDistrictName(String districtName) {
         this.districtName = districtName;
     }
 

@@ -9,6 +9,7 @@ public class ServicesLocator {
     private static ReferenceTablesService referenceTablesService = null;
     private static BrandServices brandServices = null;
     private static ContractServices contractServices = null;
+    private static DriverServices driverServices = null;
     private static CarServices carServices = null;
     private static String username;
     private static String password;
@@ -51,6 +52,12 @@ public class ServicesLocator {
             contractServices = new ContractServices();
         }
         return contractServices;
+    }
+    public static DriverServices getDriverServices(){
+        if(driverServices == null){
+            driverServices = new DriverServices();
+        }
+        return driverServices;
     }
     public static Connection getConnection() throws SQLException {
         Connection connection = null;

@@ -1,29 +1,28 @@
 package cu.edu.cujae.structbd.services;
 
 import cu.edu.cujae.structbd.dto.BrandDTO;
-import cu.edu.cujae.structbd.dto.ContractDTO;
 import cu.edu.cujae.structbd.dto.DTOLocator;
+import cu.edu.cujae.structbd.dto.DriverDTO;
 import cu.edu.cujae.structbd.utils.Conection;
 
 import java.sql.CallableStatement;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ContractServices implements Service{
+public class DriverServices implements Service{
     @Override
     public void insert(Object... args) throws SQLException {
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call insert_contract(?, ?, ?, ?, ?, ?, ?) }");
+            call = connection.prepareCall("{ call insert_driver(?, ?, ?, ?, ?, ?, ?) }");
             call.setString(1, (String) args[0]);
-            call.setDate(2,(Date) args[1]);
-            call.setDate(3,(Date) args[2]);
-            call.setDouble(4, (Double) args[3]);
-            call.setDouble(5, (Double) args[4]);
-            call.setString(6, (String) args[5]);
-            call.setInt(7, (int) args[6]);
+            call.setString(2, (String) args[1]);
+            call.setString(3, (String) args[2]);
+            call.setString(4,(String) args[3]);
+            call.setInt(5,(int) args[4]);
+            call.setBoolean(6,(boolean) args[5]);
+            call.setInt(7,(int) args[6]);
             call.execute();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -38,15 +37,15 @@ public class ContractServices implements Service{
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call update_contract(?, ?, ?, ?, ?, ?, ?, ?) }");
-            call.setInt(1, (int) args[0]);
+            call = connection.prepareCall("{ call update_driver(?, ?, ?, ?, ?) }");
+            call.setInt(1,(int) args[0]);
             call.setString(2, (String) args[1]);
-            call.setDate(3,(Date) args[2]);
-            call.setDate(4,(Date) args[3]);
-            call.setDouble(5, (Double) args[4]);
-            call.setDouble(6, (Double) args[5]);
-            call.setString(7, (String) args[6]);
-            call.setInt(8, (int) args[7]);
+            call.setString(3, (String) args[2]);
+            call.setString(4, (String) args[3]);
+            call.setString(5,(String) args[4]);
+            call.setInt(6,(int) args[5]);
+            call.setBoolean(7,(boolean) args[6]);
+            call.setInt(8,(int) args[7]);
             call.execute();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -61,7 +60,7 @@ public class ContractServices implements Service{
         java.sql.Connection connection = ServicesLocator.getConnection();
         CallableStatement call = null;
         try {
-            call = connection.prepareCall("{ call delete_contract(?) }");
+            call = connection.prepareCall("{ call delete_driver(?) }");
             call.setInt(1, (int) args[0]);
             call.execute();
         } catch (Exception e) {
@@ -76,21 +75,18 @@ public class ContractServices implements Service{
     @Override
     public void refresh() {
         String queryToExecute = """
-            SELECT contract_code, applicant_name, start_date, end_date, contract_kms, contract_amount, country_name as contract_country, fleet_number
-            FROM contract
-                JOIN car
-                    ON car.car_code = contract.car_code
-                JOIN country
-                    ON country.country_code = contract.contract_country
-            ORDER BY start_date;
-            """;
+            SELECT driver_code, id_driver, driver_name, address, phone, district_name, is_free_cover
+             FROM driver
+             JOIN district ON district.district_code = driver.district_code
+             ORDER BY driver_name;
+        """;
         List<List<String>> result = Conection.executeQuery(queryToExecute);
-        List<ContractDTO> contracts = DTOLocator.getContractDTOS();
-        contracts.clear();
+        List<DriverDTO> drivers = DTOLocator.getDriverDTOList();
+        drivers.clear();
         List<String> columnNames = result.remove(0);
         for (List<String> list: result) {
-            ContractDTO contract = new ContractDTO(columnNames, list);
-            contracts.add(contract);
+            DriverDTO driver = new DriverDTO(columnNames, list);
+            drivers.add(driver);
         }
     }
 }

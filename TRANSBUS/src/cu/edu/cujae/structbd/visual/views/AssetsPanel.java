@@ -70,7 +70,12 @@ public class AssetsPanel extends JPanel {
                     tableBrands.setTableData(data);
                 }
                 case Couples -> {}
-                case Drivers -> {}
+                case Drivers -> {
+                    ServicesLocator.getDriverServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getDriverDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("id_driver", "driver_name", "address", "phone", "district_name", "is_free_cover"));
+                    tableDrivers.setTableData(data);
+                }
                 case Cars -> {
                     ServicesLocator.getCarServices().refresh();
                     List<DTO> dataDTO = new LinkedList<>(DTOLocator.getCarDTOList());
@@ -224,10 +229,9 @@ public class AssetsPanel extends JPanel {
 
     public TableScroll getTableDrivers() {
         if (tableDrivers == null) {
-            String[] columns = new String[]{"Name", "Seats", "Fuel Type", "Spending"};
+            String[] columns = new String[]{"ID", "Name", "Address", "Phone", "District name", "Is free cover"};
             tableDrivers = new TableScroll(columns);
-            //List<List<String>> data = ServicesLocator.getBrandServices().getAll();
-            //tableDrivers.setTableData(data);
+            refresh(Table.Drivers);
         }
         return tableDrivers;
     }
