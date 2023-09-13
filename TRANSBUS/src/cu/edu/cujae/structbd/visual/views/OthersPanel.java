@@ -50,7 +50,12 @@ public class OthersPanel extends JPanel {
     public void refresh(Table table){
         try {
             switch (table){
-                case TourGruop -> {}
+                case TourGruop -> {
+                    ServicesLocator.getTourServices().refresh();
+                    List<DTO> dataDTO = new LinkedList<>(DTOLocator.getTourDTOList());
+                    List<List<String>> data = DTOUtils.dtoListToStringList(dataDTO, List.of("group_code", "group_name"));
+                    tableTourGroup.setTableData(data);
+                }
                 case Discrepancies -> {}
                 case District -> {
                     ServicesLocator.getDistrictServices().refresh();
@@ -129,7 +134,7 @@ public class OthersPanel extends JPanel {
 
     public TableScroll getTableTourGroup() {
         if (tableTourGroup == null) {
-            String[] columns = new String[]{"Name"};
+            String[] columns = new String[]{"Code", "Name"};
             tableTourGroup = new TableScroll(columns);
             refresh(Table.TourGruop);
         }

@@ -17,5 +17,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="postgresql-42.6.0" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.9.4" level="project" />
+    <orderEntry type="library" name="jcalendar-1.4" level="project" />
   </component>
 </module>

@@ -17,6 +17,7 @@ public class App extends JFrame {
     private int height;
     private AssetsPanel assetsPanel;
     private AdminPanel adminPanel;
+    private ReportsPDFPanel reportsPDFPanel;
     private HomePanel homePanel;
     private OthersPanel othersPanel;
     private ReportsPanel reportsPanel;
@@ -94,6 +95,7 @@ public class App extends JFrame {
             options.addSubOption(new BarOption("Others"), getOthersPanel(), management);
             BarOption reports = options.addParentOption(new BarOption("Reports"));
             options.addSubOption(new BarOption("By Months"), getReportsPanel(), reports);
+            options.addSubOption(new BarOption("PDF"), getReportsPDFPanel(), reports);
             options.addOption(new BarOption("Admin"), getAdminPanel());
 
         }
@@ -140,5 +142,12 @@ public class App extends JFrame {
             servicesPanel = new ServicesPanel();
         }
         return servicesPanel;
+    }
+
+    public ReportsPDFPanel getReportsPDFPanel() {
+        if (reportsPDFPanel == null) {
+            reportsPDFPanel = new ReportsPDFPanel();
+        }
+        return reportsPDFPanel;
     }
 }

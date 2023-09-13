@@ -7,6 +7,7 @@ import java.util.List;
 public class DTOLocator {
     private static List<BrandDTO> brandDTOList;
     private static List<CarDTO> carDTOList;
+    private static List<TourDTO> tourDTOList;
     private static List<ContractDTO> contractDTOS;
     private static List<CoupleDTO> coupleDTOList;
     private static List<DiscrepancyDTO> discrepancyDTOList;
@@ -123,6 +124,13 @@ public class DTOLocator {
             roleDTOList = new LinkedList<>();
         }
         return roleDTOList;
+    }
+
+    public static List<TourDTO> getTourDTOList() {
+        if (tourDTOList == null) {
+            tourDTOList = new LinkedList<>();
+        }
+        return tourDTOList;
     }
 
 }

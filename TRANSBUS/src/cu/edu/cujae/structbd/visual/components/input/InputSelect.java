@@ -13,9 +13,13 @@ public class InputSelect extends JPanel implements FormItem {
 
     public InputSelect(int x, int y, String label, Option[] options) {
         setOptions(options);
-        setBounds(x, y, 200, 48);
+        setBounds(x, y, 100, 48);
         setLayout(new GridLayout(2,1));
-        add(getLabel(label));
+        if (!label.equals("")) {
+            add(getLabel(label));
+            setBounds(x, y, 200, 48);
+        }
+
         add(getComboBox());
     }
 
